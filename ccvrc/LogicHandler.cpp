@@ -2,7 +2,7 @@
 
 #define WIDTH 640	//window default width
 #define HEIGHT 480	//window default height
-#define TITLE "game title"
+#define TITLE "Centa Chicken Vs Russian Chicken"
 
 sf::RectangleShape shape;
 
