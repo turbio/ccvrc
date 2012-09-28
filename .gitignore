@@ -9,3 +9,4 @@ ipch/
 *.user
 *.opensdf
 *.suo
+*.db
