@@ -2,9 +2,7 @@
 
 #define WIDTH 640	//window default width
 #define HEIGHT 480	//window default height
-#define TITLE "Centa Chicken Vs Russian Chicken"
-
-sf::RectangleShape shape;
+#define TITLE "Centa Chicken Vs. Russian Chicken"
 
 //CONSTRUCTOR
 LogicHandler::LogicHandler(void){
@@ -13,12 +11,7 @@ LogicHandler::LogicHandler(void){
 
 	window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), TITLE, sf::Style::Close);
 
-	shape.setSize(sf::Vector2f(10.0f, 10.0f));
-	if(!LogicHandler::loadTextures("res/")){
-		shape.setFillColor(sf::Color::Red);
-	}else{
-		shape.setFillColor(sf::Color::Green);
-	}
+	LogicHandler::loadTextures("res/");
 
 	titleScreenBg.setTexture(*textureList.at(0));
 	titleScreenBg.setPosition(0, 0);
@@ -60,8 +53,6 @@ void LogicHandler::run(void){
 				window->draw(*spriteList.at(i));
 			}
 		}
-
-		window->draw(shape);
 		
 		deltaTime = (double)clock.getElapsedTime().asMicroseconds();
 
