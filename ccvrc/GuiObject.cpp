@@ -1,5 +1,6 @@
 #include "GuiObject.h"
 
+//Constructor :[]
 GuiObject::GuiObject(void){
 
 }
@@ -8,11 +9,22 @@ GuiObject::~GuiObject(void){
 
 }
 
-bool GuiObject::mouseOver(void){
-	return false;
+//return if clicked or mouse over
+sf::Event GuiObject::pollEvent(sf::Event event){
+	if(mouseOver()){
+		if(event.MouseButtonPressed){
+			setTexture(mouseDownTexture);
+		}else{
+			setTexture(mouseOverTexture);
+		}
+	}else{
+		setTexture(defaultTexture);
+	}
+
+	return event;
 }
 
-bool GuiObject::mouseDown(void){
-	
-	return (mouseOver && false);
+//returns if mouse over this object
+bool GuiObject::mouseOver(void){
+	return false;	//not done yet
 }
