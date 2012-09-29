@@ -6,6 +6,8 @@
 #include <vector>
 #include <iostream>
 #include "MultiSprite.h"
+#include "LogicHandler.h"
+#include "GuiObject.h"
 
 class LogicHandler{
 
