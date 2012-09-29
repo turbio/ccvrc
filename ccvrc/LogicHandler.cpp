@@ -25,7 +25,10 @@ LogicHandler::LogicHandler(void){
 
 void LogicHandler::setupSprites(void){
 	//setup all sprites
-	//spriteList.push_back(bottomBar);
+	bottomBar = new GuiObject();
+	bottomBar->setTexture(*textureList.at(1));
+	bottomBar->setPosition(0, HEIGHT - bottomBar->getTexture()->getSize().y);
+	spriteList.push_back(bottomBar);
 }
 
 //DESTRUCTOR
