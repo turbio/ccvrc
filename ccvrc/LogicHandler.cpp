@@ -4,7 +4,7 @@
 #define HEIGHT 480	//window default height
 #define TITLE "Centa Chicken Vs. Russian Chicken"
 
-GuiObject *bottomBar;
+GuiObject *bottomBar, *topBar;
 
 //CONSTRUCTOR
 LogicHandler::LogicHandler(void){
@@ -28,7 +28,12 @@ void LogicHandler::setupSprites(void){
 	bottomBar = new GuiObject();
 	bottomBar->setTexture(*textureList.at(1));
 	bottomBar->setPosition(0, HEIGHT - bottomBar->getTexture()->getSize().y);
-	spriteList.push_back(bottomBar);
+	guiList.push_back(bottomBar);
+
+	topBar = new GuiObject();
+	topBar->setTexture(*textureList.at(2));
+	topBar->setPosition(0, 0);
+	guiList.push_back(topBar);
 }
 
 //DESTRUCTOR
@@ -55,8 +60,8 @@ void LogicHandler::run(void){
 		if(titleScreen){
 			window->draw(titleScreenBg);
 		}else{
-			for(int i = 0; i < spriteList.size(); i++){
-				window->draw(*spriteList.at(i));
+			for(int i = 0; i < guiList.size(); i++){
+				window->draw(*guiList.at(i));
 			}
 		}
 		

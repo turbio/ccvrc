@@ -1,2 +1,3 @@
 title.png
-bottom_bar.png
+bottom_bar_bg.png
+top_bar_bg.png
