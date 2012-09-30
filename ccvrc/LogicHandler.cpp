@@ -1,7 +1,7 @@
 #include "LogicHandler.h"
 
-#define WIDTH 640	//window default width
-#define HEIGHT 480	//window default height
+#define WIDTH 800	//window default width
+#define HEIGHT 600	//window default height
 #define TITLE "Centa Chicken Vs. Russian Chicken"
 
 GuiObject *bottomBar, *topBar;
@@ -13,7 +13,7 @@ LogicHandler::LogicHandler(void){
 
 	window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), TITLE, sf::Style::Close);
 
-	LogicHandler::loadTextures("res/");
+	loadTextures("res/");
 
 	titleScreenBg.setTexture(*textureList.at(0));
 	titleScreenBg.setPosition(0, 0);
