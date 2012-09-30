@@ -4,14 +4,14 @@
 #define HEIGHT 600	//window default height
 #define TITLE "Centa Chicken Vs. Russian Chicken"
 
-GuiObject *bottomBar, *topBar;
+GuiObject *bottomBar, *topBar, *healthBar, *manaBar;
 
 //CONSTRUCTOR
 LogicHandler::LogicHandler(void){
 	titleScreen = true;
 	elapsedTime = 1;
 
-	window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), TITLE, sf::Style::Close);
+	window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), TITLE);
 
 	loadTextures("res/");
 
@@ -34,6 +34,20 @@ void LogicHandler::setupSprites(void){
 	topBar->setTexture(*textureList.at(2));
 	topBar->setPosition(0, 0);
 	guiList.push_back(topBar);
+
+	healthBar = new GuiObject();
+	healthBar->setTexture(*textureList.at(3));
+	healthBar->setPosition(79, 486);
+	healthBar->setTextureRect(sf::IntRect(1, 0, 1, healthBar->getTexture()->getSize().y));
+	healthBar->setScale(235, 1);
+	guiList.push_back(healthBar);
+
+	manaBar = new GuiObject();
+	manaBar->setTexture(*textureList.at(3));
+	manaBar->setPosition(79, 586);
+	manaBar->setTextureRect(sf::IntRect(0, 0, 1, manaBar->getTexture()->getSize().y));
+	manaBar->setScale(235, 1);
+	guiList.push_back(healthBar);
 }
 
 //DESTRUCTOR
