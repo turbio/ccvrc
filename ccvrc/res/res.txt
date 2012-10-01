@@ -1,4 +1,8 @@
+#art
 title.png
 bottom_bar_bg.png
 top_bar_bg.png
 bar.png
+#music
+title.ogg
+#sound

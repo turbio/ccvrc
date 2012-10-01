@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML\Graphics.hpp>	//uses graphics cuz itz a game dur
+#include <SFML\Audio.hpp>
 #include <fstream>
 #include <string>
 #include <vector>
