@@ -10,12 +10,9 @@ LogicHandler::LogicHandler(void){
 	elapsedTime = 1;
 
 	window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), TITLE);
-
-	loadTextures("res/");
+	window->setFramerateLimit(0);
 
 	setupSprites();
-
-	window->setFramerateLimit(0);
 }
 
 void LogicHandler::setupSprites(void){
