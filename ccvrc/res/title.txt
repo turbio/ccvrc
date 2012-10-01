@@ -1,0 +1,5 @@
+res:
+titlebgtex title.png
+spr:
+titlebg 0 0 0
+strtbtn click_to_start 0 0

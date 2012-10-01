@@ -31,5 +31,4 @@ private:
 
 	bool titleScreen;	//if the game is at the title screen
 	double elapsedTime;	//total time elapsed
-	sf::Sprite titleScreenBg;	//title screen background
 };
