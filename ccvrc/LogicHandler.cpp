@@ -13,7 +13,7 @@ LogicHandler::LogicHandler(void){
 
 	window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), TITLE);
 
-	loadTextures("res/");
+	loadRes("res/");
 
 	titleScreenBg.setTexture(*textureList.at(0));
 	titleScreenBg.setPosition(0, 0);
@@ -100,7 +100,7 @@ void LogicHandler::handleEvent(sf::Event evt){
 	}
 }
 
-bool LogicHandler::loadTextures(std::string dir){
+bool LogicHandler::loadRes(std::string dir){
 	std::string line;
 	std::vector<sf::Texture*> textures;
 
