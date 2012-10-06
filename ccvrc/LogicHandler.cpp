@@ -4,8 +4,6 @@
 #define HEIGHT 600	//window default height
 #define TITLE "Centa Chicken Vs. Russian Chicken"
 
-GuiObject *bottomBar, *topBar, *healthBar, *manaBar;
-
 //CONSTRUCTOR
 LogicHandler::LogicHandler(void){
 	titleScreen = true;
@@ -19,35 +17,10 @@ LogicHandler::LogicHandler(void){
 	titleScreenBg.setPosition(0, 0);
 
 	setupSprites();
-
-	window->setFramerateLimit(0);
 }
 
 void LogicHandler::setupSprites(void){
-	//setup all sprites
-	bottomBar = new GuiObject();
-	bottomBar->setTexture(*textureList.at(1));
-	bottomBar->setPosition(0, HEIGHT - bottomBar->getTexture()->getSize().y);
-	guiList.push_back(bottomBar);
-
-	topBar = new GuiObject();
-	topBar->setTexture(*textureList.at(2));
-	topBar->setPosition(0, 0);
-	guiList.push_back(topBar);
-
-	healthBar = new GuiObject();
-	healthBar->setTexture(*textureList.at(3));
-	healthBar->setPosition(79, 486);
-	healthBar->setTextureRect(sf::IntRect(1, 0, 1, healthBar->getTexture()->getSize().y));
-	healthBar->setScale(235, 1);
-	guiList.push_back(healthBar);
-
-	manaBar = new GuiObject();
-	manaBar->setTexture(*textureList.at(3));
-	manaBar->setPosition(79, 586);
-	manaBar->setTextureRect(sf::IntRect(0, 0, 1, manaBar->getTexture()->getSize().y));
-	manaBar->setScale(235, 1);
-	guiList.push_back(healthBar);
+	//guiLoader.LoadFile("res/title");
 }
 
 //DESTRUCTOR
@@ -70,13 +43,14 @@ void LogicHandler::run(void){
 
 		window->clear(sf::Color(20, 180, 255));
 
-		//render
-		if(titleScreen){
-			window->draw(titleScreenBg);
-		}else{
-			for(int i = 0; i < guiList.size(); i++){
-				window->draw(*guiList.at(i));
-			}
+		for(int i = 0; i < guiList.size(); i++){
+			window->draw(*guiList.at(i));
+		}for(int i = 0; i < fgList.size(); i++){
+			window->draw(*guiList.at(i));
+		}for(int i = 0; i < mgList.size(); i++){
+			window->draw(*guiList.at(i));
+		}for(int i = 0; i < bgList.size(); i++){
+			window->draw(*guiList.at(i));
 		}
 		
 		deltaTime = (double)clock.getElapsedTime().asMicroseconds();
