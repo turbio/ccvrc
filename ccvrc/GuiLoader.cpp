@@ -16,7 +16,9 @@ void GuiLoader::LoadFile(std::string path){
 		while(file.good()){
 			std::getline(file, line);
 
+			if(line.at(0) == '#'){
 
+			}
 		}
 	}else{
 		std::cout << "unable to open file: \"" << path << "\"" << std::endl;

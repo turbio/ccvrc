@@ -1,8 +1,8 @@
 #include "GuiObject.h"
 
-//Constructor :[]
-GuiObject::GuiObject(void){
-
+//Constructor :#
+GuiObject::GuiObject(char n[]){
+	name = n;	//set the name of this object
 }
 
 GuiObject::~GuiObject(void){
