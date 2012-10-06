@@ -13,7 +13,7 @@ LogicHandler::LogicHandler(void){
 
 	window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), TITLE);
 
-	loadTextures("res/");
+	loadRes("res/");
 
 	titleScreenBg.setTexture(*textureList.at(0));
 	titleScreenBg.setPosition(0, 0);
@@ -100,7 +100,7 @@ void LogicHandler::handleEvent(sf::Event evt){
 	}
 }
 
-bool LogicHandler::loadTextures(std::string dir){
+bool LogicHandler::loadRes(std::string dir){
 	std::string line;
 	std::vector<sf::Texture*> textures;
 
@@ -112,12 +112,33 @@ bool LogicHandler::loadTextures(std::string dir){
 			
 			std::cout << "res: " << line;
 
-			sf::Texture *tex;
-			tex = new sf::Texture;
-			if(!tex->loadFromFile( dir + line)){
-				return false;
+			if(line.at(0) != '#'){
+				if(line.substr(line.length() - 3, 3) == "png"){
+					sf::Texture *tex;
+					tex = new sf::Texture;
+
+					if(!tex->loadFromFile(dir + line)){
+						return false;
+					}
+
+					textures.push_back(tex);
+				}else if(line.substr(line.length() - 3, 3) == "ogg"){
+					sf::SoundBuffer *buffer;
+					buffer = new sf::SoundBuffer();
+
+					if(!buffer->loadFromFile(dir + line)){
+						return false;
+					}
+
+					sf::Sound *sound;
+					sound = new sf::Sound();
+					sound->setBuffer(*buffer);
+					sound->play();
+					sound->setLoop(false);
+				}else if(line.substr(line.length() - 3, 3) == "wav"){
+
+				}
 			}
-			textures.push_back(tex);
 			
 			std::cout << " loaded" << std::endl;
 		}
