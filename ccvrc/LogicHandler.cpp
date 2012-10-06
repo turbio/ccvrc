@@ -13,14 +13,11 @@ LogicHandler::LogicHandler(void){
 
 	loadRes("res/");
 
-	titleScreenBg.setTexture(*textureList.at(0));
-	titleScreenBg.setPosition(0, 0);
-
 	setupSprites();
 }
 
 void LogicHandler::setupSprites(void){
-	//guiLoader.LoadFile("res/title");
+	
 }
 
 //DESTRUCTOR
@@ -81,42 +78,61 @@ bool LogicHandler::loadRes(std::string dir){
 	std::ifstream file(dir + "res.txt");
 
 	if(file.is_open()){
+		std::cout <<  ":: line | index | loaded +/- ::::: loading from \"" << dir << "\" ::" << std::endl;
+
+		for(int i = 0; i < 53 + dir.length(); i++){
+			std::cout << ":";
+		}
+		std::cout << std::endl;
+
 		while(file.good()){
+			skip:
 			std::getline(file, line);
 			
-			std::cout << "res: " << line;
+			std::cout <<  ":: " << line;
 
-			if(line.at(0) != '#'){
+			if(line.empty() || line.length() <= 3){
+				std::cout << "\n"; 
+				goto skip;
+			}
+
+			if(line.at(0) != '#' && line.length() > 3){
 				if(line.substr(line.length() - 3, 3) == "png"){
 					sf::Texture *tex;
 					tex = new sf::Texture;
 
 					if(!tex->loadFromFile(dir + line)){
-						return false;
+						delete tex;
+						std::cout << "-" << std::endl;
+						goto skip;
 					}
 
 					textures.push_back(tex);
+					std::cout << " | " << textures.size() - 1 << " | ";
+					std::cout << "+";
 				}else if(line.substr(line.length() - 3, 3) == "ogg"){
 					sf::SoundBuffer *buffer;
 					buffer = new sf::SoundBuffer();
 
 					if(!buffer->loadFromFile(dir + line)){
-						return false;
+						delete buffer;
+						std::cout << "-" << std::endl;
+						goto skip;
 					}
 
-					sf::Sound *sound;
-					sound = new sf::Sound();
-					sound->setBuffer(*buffer);
-					sound->play();
-					sound->setLoop(false);
+					std::cout << "+";
 				}else if(line.substr(line.length() - 3, 3) == "wav"){
 
 				}
 			}
-			
-			std::cout << " loaded" << std::endl;
+
+			std::cout << std::endl;
 		}
 		file.close();
+
+		for(int i = 0; i < 53 + dir.length(); i++){
+			std::cout << ":";
+		}
 	}else{
 		return false;
 	}

@@ -8,7 +8,6 @@
 #include <iostream>
 #include "LogicHandler.h"
 #include "GuiObject.h"
-#include "GuiLoader.h"
 
 class LogicHandler{
 
@@ -29,6 +28,7 @@ private:
 	bool loadRes(std::string directory);
 	sf::RenderWindow *window;	//the main window (probobaly the only)
 	std::vector<sf::Texture*> textureList;	//list of all textures currently loaded
+
 
 	std::vector<GuiObject*> guiList;	//list of all gui sprites drawn first
 	std::vector<sf::Sprite*> fgList;	//list of all sprites in the forground drawn after gui
