@@ -1,6 +1,0 @@
-res:	//everything fallowing will be loaded as a resource ex: texture, music..
-texname tex.png	//loads texture "tex.png" and gives it name "texname"
-spr:	//everything fallowing will be created as a sprite and displayed
-titlebg texname 0 0	//creates sprite called "titlebg" with texture "texname" at cordinates 0 x and 0 y
-cropt texname 0 0 10 10 10 10	//creates sprite called "titlebg" with texture "texname" at cordinates 0 x and 0 y with cropping
-//name texture x y crop x crop y crop w crop h

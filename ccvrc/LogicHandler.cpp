@@ -9,15 +9,21 @@ LogicHandler::LogicHandler(void){
 	titleScreen = true;
 	elapsedTime = 1;
 
+	width = WIDTH;
+	height = HEIGHT;
+	guiHandler = new GuiHandler(&width, &height);
+
 	window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), TITLE);
 
+	guiHandler->loading(window);
 	loadRes("res/");
+	guiHandler->loaded();
 
 	setupSprites();
 }
 
 void LogicHandler::setupSprites(void){
-	
+	guiHandler->setupGui();
 }
 
 //DESTRUCTOR
@@ -59,7 +65,11 @@ void LogicHandler::run(void){
 void LogicHandler::update(double delta){
 	elapsedTime += (delta * 0.00001);
 
-	//update game objects
+	for(int i = 0; i < guiList.size(); i++){
+		if(guiList.at(i) == NULL){
+			guiList.erase(guiList.begin() + i - 1);
+		}
+	}
 }
 
 void LogicHandler::handleEvent(sf::Event evt){
@@ -69,6 +79,14 @@ void LogicHandler::handleEvent(sf::Event evt){
 		evt.type == sf::Event::MouseButtonPressed) && titleScreen){
 			titleScreen = false;
 	}
+}
+
+void LogicHandler::addGuiObj(GuiObject *object){
+	guiList.push_back(object);
+}
+
+sf::Texture* LogicHandler::getTexture(int index){
+	return textureList.at(index);
 }
 
 bool LogicHandler::loadRes(std::string dir){
@@ -84,7 +102,7 @@ bool LogicHandler::loadRes(std::string dir){
 			std::cout << ":";
 		}
 		std::cout << std::endl;
-
+		
 		while(file.good()){
 			skip:
 			std::getline(file, line);
