@@ -11,7 +11,7 @@
 #include <iostream>
 #include "LogicHandler.h"
 #include "GuiObject.h"
-#include "GuiHandler.h"
+#include "StateHandler.h"
 
 class LogicHandler{
 
@@ -43,7 +43,7 @@ private:
 	bool titleScreen;	//if the game is at the title screen
 	double elapsedTime;	//total time elapsed
 
-	GuiHandler *guiHandler;
+	StateHandler *stateHandler;
 
 	int width, height;
 };

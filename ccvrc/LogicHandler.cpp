@@ -11,19 +11,19 @@ LogicHandler::LogicHandler(void){
 
 	width = WIDTH;
 	height = HEIGHT;
-	guiHandler = new GuiHandler(&width, &height);
+	stateHandler = new StateHandler(&width, &height, &textureList, &guiList);
 
 	window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), TITLE);
 
-	guiHandler->loading(window);
+	stateHandler->loading(window);
 	loadRes("res/");
-	guiHandler->loaded();
+	stateHandler->loaded();
 
 	setupSprites();
 }
 
 void LogicHandler::setupSprites(void){
-	guiHandler->setupGui();
+	stateHandler->setupGui();
 }
 
 //DESTRUCTOR
