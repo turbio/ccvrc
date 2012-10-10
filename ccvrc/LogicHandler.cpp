@@ -10,16 +10,13 @@ LogicHandler::LogicHandler(void){
 	elapsedTime = 1;
 
 	window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), TITLE);
-
-	loadTextures("res/");
+	window->setFramerateLimit(0);
 
 	setupSprites();
-
-	window->setFramerateLimit(0);
 }
 
 void LogicHandler::setupSprites(void){
-
+	//guiLoader.LoadFile("res/title");
 }
 
 //DESTRUCTOR
@@ -43,6 +40,12 @@ void LogicHandler::run(void){
 		window->clear(sf::Color(20, 180, 255));
 
 		for(int i = 0; i < guiList.size(); i++){
+			window->draw(*guiList.at(i));
+		}for(int i = 0; i < fgList.size(); i++){
+			window->draw(*guiList.at(i));
+		}for(int i = 0; i < mgList.size(); i++){
+			window->draw(*guiList.at(i));
+		}for(int i = 0; i < bgList.size(); i++){
 			window->draw(*guiList.at(i));
 		}
 		

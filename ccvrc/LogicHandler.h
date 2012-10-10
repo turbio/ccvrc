@@ -5,9 +5,9 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include "MultiSprite.h"
 #include "LogicHandler.h"
 #include "GuiObject.h"
+#include "GuiLoader.h"
 
 class LogicHandler{
 
@@ -18,17 +18,24 @@ public:
 	void run(void);	//main game loop
 	void setupSprites(void);
 
+	struct texRes{
+		sf::Texture texture;
+		char name[1];
+	};
+
 private:
 	void handleEvent(sf::Event theEventToBeHandled);	//handles any and all events
 	bool loadTextures(std::string directory);
 	sf::RenderWindow *window;	//the main window (probobaly the only)
 	std::vector<sf::Texture*> textureList;	//list of all textures currently loaded
 
-	std::vector<sf::Sprite*> guiList;	//list of all gui sprites drawn first
+	std::vector<GuiObject*> guiList;	//list of all gui sprites drawn first
 	std::vector<sf::Sprite*> fgList;	//list of all sprites in the forground drawn after gui
 	std::vector<sf::Sprite*> mgList;	//list of all sprites in midle ground drawn after forground
 	std::vector<sf::Sprite*> bgList;	//list of all sprites in background drawn last
 
 	bool titleScreen;	//if the game is at the title screen
 	double elapsedTime;	//total time elapsed
+
+	//GuiLoader guiLoader();
 };
