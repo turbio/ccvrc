@@ -20,11 +20,16 @@ std::vector<sf::Texture*>* StateHandler::getTextureList(void){
 	return textureList;
 }
 
+void StateHandler::setState(int index){
+	currentState = states.at(index);
+}
+
+GameState* StateHandler::getCurrentState(){
+	return currentState;
+}
+
 void StateHandler::setupGui(void){
-	GuiObject *bottomBar = new GuiObject("bottom bar");
-	bottomBar->setTexture(*textureList->at(0));
-	bottomBar->setPosition(0, *height - bottomBar->getTexture()->getSize().y);
-	guiList->push_back(bottomBar);
+	GameState * titleScreen = new GuiTitleScreen(this);
 }
 
 void StateHandler::loading(sf::RenderWindow *window, std::string message){

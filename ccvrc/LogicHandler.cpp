@@ -65,6 +65,10 @@ void LogicHandler::run(void){
 void LogicHandler::update(double delta){
 	elapsedTime += (delta * 0.00001);
 
+	if(stateHandler->getCurrentState() == NULL){
+		stateHandler->getCurrentState()->update(delta);
+	}
+
 	for(int i = 0; i < guiList.size(); i++){
 		if(guiList.at(i) == NULL){
 			guiList.erase(guiList.begin() + i - 1);

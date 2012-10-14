@@ -1,6 +1,6 @@
 #include "GuiTitleScreen.h"
 
-GuiTitleScreen::GuiTitleScreen(){
+GuiTitleScreen::GuiTitleScreen(StateHandler* handler) : GameState("title_screen", handler){
 	
 }
 
@@ -8,6 +8,6 @@ GuiTitleScreen::~GuiTitleScreen(void){
 
 }
 
-void GuiTitleScreen::update(void){
+void GuiTitleScreen::update(double delta){
 
 }

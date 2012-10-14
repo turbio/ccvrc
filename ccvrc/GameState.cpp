@@ -9,7 +9,7 @@ GameState::~GameState(void){
 
 }
 
-void GameState::update(void){
+void GameState::update(double delta){
 
 }
 

@@ -5,6 +5,9 @@
 #include <string>
 #include <vector>
 
+//individual states
+#include "GuiTitleScreen.h"
+
 class GameState;
 
 class StateHandler{
@@ -18,11 +21,15 @@ public:
 	std::vector<sf::Texture*>* getTextureList(void);
 	//sf::SoundBuffer* getSound(int index);
 	//std::vector<sf::SoundBuffer*>* getSoundList(void);
+	void setState(int index_of_state);
+	GameState* getCurrentState(void);
 private:
 	std::vector<sf::Texture*>* textureList;
 	std::vector<GuiObject*>* guiList;
 	std::vector<GameState*> states;
 	
+	GameState* currentState;
+
 	bool gameLoaded;
 	int *width, *height;
 };

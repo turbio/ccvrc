@@ -12,6 +12,7 @@
 #include "LogicHandler.h"
 #include "GuiObject.h"
 #include "StateHandler.h"
+#include "GameState.h"
 
 class LogicHandler{
 

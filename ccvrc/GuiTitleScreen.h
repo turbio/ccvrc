@@ -1,11 +1,14 @@
 #pragma once
 
 #include "GameState.h"
+#include "StateHandler.h"
 
-class GuiTitleScreen{
+class GuiTitleScreen : public GameState{
 
 public:
-	GuiTitleScreen(void);
+	GuiTitleScreen(StateHandler* h);
 	~GuiTitleScreen(void);
-	void update(void);
+	void update(double delta);
+
+private:
 };
