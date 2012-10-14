@@ -1,7 +1,8 @@
 #include "GameState.h"
 
-GameState::GameState(std::string _name){
+GameState::GameState(std::string _name, StateHandler* _stateHandler){
 	name = _name;
+	stateHandler = _stateHandler;
 }
 
 GameState::~GameState(void){

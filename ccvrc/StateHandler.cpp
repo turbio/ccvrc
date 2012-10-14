@@ -12,6 +12,14 @@ StateHandler::~StateHandler(void){
 
 }
 
+sf::Texture* StateHandler::getTexture(int i){
+	return textureList->at(i);
+}
+
+std::vector<sf::Texture*>* StateHandler::getTextureList(void){
+	return textureList;
+}
+
 void StateHandler::setupGui(void){
 	GuiObject *bottomBar = new GuiObject("bottom bar");
 	bottomBar->setTexture(*textureList->at(0));

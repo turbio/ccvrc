@@ -1,17 +1,17 @@
 #pragma once
 
+#include "StateHandler.h"
 #include <string>
 #include <vector>
 #include <SFML\Graphics.hpp>
 #include "GuiObject.h"
 
-class LogicHandler;
 class StateHandler;
 
 class GameState{
 
 public:
-	GameState(std::string name);
+	GameState(std::string name_of_state, StateHandler* game_state_handler_reference);
 	~GameState(void);
 	virtual void update(void);
 	std::vector<GuiObject*>* getGuiList(void);
@@ -19,7 +19,7 @@ public:
 protected:
 	std::vector<GuiObject*> objects;
 	std::string name;
-	LogicHandler* logicHandler;
+
 	StateHandler* stateHandler;
 };
 

@@ -2,7 +2,7 @@
 
 #include "GameState.h"
 
-class GuiTitleScreen : public GameState{
+class GuiTitleScreen{
 
 public:
 	GuiTitleScreen(void);
