@@ -1,14 +1,10 @@
 #pragma once
 
+#include "GameState.h"
 #include "GuiObject.h"
 #include <SFML\Graphics.hpp>
 #include <string>
 #include <vector>
-
-//individual states
-#include "GuiTitleScreen.h"
-
-class GameState;
 
 class StateHandler{
 public:

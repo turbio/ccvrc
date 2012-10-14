@@ -29,7 +29,7 @@ GameState* StateHandler::getCurrentState(){
 }
 
 void StateHandler::setupGui(void){
-	GameState * titleScreen = new GuiTitleScreen(this);
+	GameState * titleScreen;
 }
 
 void StateHandler::loading(sf::RenderWindow *window, std::string message){

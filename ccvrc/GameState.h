@@ -1,6 +1,5 @@
 #pragma once
 
-#include "StateHandler.h"
 #include <string>
 #include <vector>
 #include <SFML\Graphics.hpp>
