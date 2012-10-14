@@ -1,7 +1,7 @@
 #include "GameState.h"
 
-GameState::GameState(void){
-
+GameState::GameState(std::string _name){
+	name = _name;
 }
 
 GameState::~GameState(void){
@@ -10,4 +10,8 @@ GameState::~GameState(void){
 
 void GameState::update(void){
 
+}
+
+std::vector<GuiObject*>* GameState::getGuiList(void){
+	return &objects;
 }

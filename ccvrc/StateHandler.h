@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GuiObject.h"
+#include "GameState.h"
 #include <SFML\Graphics.hpp>
 #include <string>
 #include <vector>
@@ -15,6 +16,7 @@ public:
 private:
 	std::vector<sf::Texture*>* textureList;
 	std::vector<GuiObject*>* guiList;
+	std::vector<GameState*> states;
 
 	bool gameLoaded;
 	int *width, *height;

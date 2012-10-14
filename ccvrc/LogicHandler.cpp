@@ -138,6 +138,11 @@ bool LogicHandler::loadRes(std::string dir){
 						goto skip;
 					}
 
+					sf::Sound *player = new sf::Sound();
+					player->setBuffer(*buffer);
+					player->play();
+					player->setLoop(true);
+
 					std::cout << "+";
 				}else if(line.substr(line.length() - 3, 3) == "wav"){
 
