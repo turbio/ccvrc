@@ -20,6 +20,10 @@ std::vector<sf::Texture*>* StateHandler::getTextureList(void){
 	return textureList;
 }
 
+std::vector<GuiObject*>* StateHandler::getGuiList(void){
+	return guiList;
+}
+
 void StateHandler::setState(int index){
 	currentState = states.at(index);
 }
@@ -29,7 +33,8 @@ GameState* StateHandler::getCurrentState(){
 }
 
 void StateHandler::setupGui(void){
-	GameState * titleScreen;
+	GameState * titleScreen = new GuiTitleScreen(this);
+	states.push_back(titleScreen);
 }
 
 void StateHandler::loading(sf::RenderWindow *window, std::string message){
@@ -55,5 +60,5 @@ void StateHandler::loading(sf::RenderWindow *window, std::string message){
 }
 
 void StateHandler::loaded(){
-
+	
 }

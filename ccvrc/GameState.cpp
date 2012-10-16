@@ -6,13 +6,9 @@ GameState::GameState(std::string _name, StateHandler* _stateHandler){
 }
 
 GameState::~GameState(void){
-
+	//getGuiList()->clear();
 }
 
 void GameState::update(double delta){
 
-}
-
-std::vector<GuiObject*>* GameState::getGuiList(void){
-	return &objects;
 }
