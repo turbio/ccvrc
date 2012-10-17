@@ -4,11 +4,9 @@ GuiObject* titleScreenBg;
 
 GuiTitleScreen::GuiTitleScreen(StateHandler* handler) : GameState("title_screen", handler){
 	titleScreenBg = new GuiObject("title screen");
-	//titleScreenBg->setTexture(*);
-	//getTextureList();
-	//setState(0);
+	//titleScreenBg->setTexture(*stateHandler->getTexture(0));
 	//titleScreenBg->setPosition(0, 0);
-	//getGuiList()->push_back(titleScreenBg);
+	//stateHandler->getGuiList()->push_back(titleScreenBg);
 }
 
 GuiTitleScreen::~GuiTitleScreen(void){
