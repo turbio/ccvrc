@@ -1,6 +1,10 @@
 #include "StateInterface.h"
 
-StateInterface::StateInterface(void){
+StateInterface::StateInterface(std::vector<sf::Texture*>*,
+	std::vector<GuiObject*>*,
+	std::vector<sf::Sprite*>*,
+	std::vector<sf::Sprite*>*,
+	std::vector<sf::Sprite*>*){
 
 }
 
