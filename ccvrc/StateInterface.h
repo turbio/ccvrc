@@ -1,16 +1,13 @@
 #pragma once
 #include <SFML\Graphics.hpp>
+#include "LogicHandler.h"
 
 class GameState;
 class GuiObject;
 
 class StateInterface{
 public:
-	StateInterface(std::vector<sf::Texture*>*,
-	std::vector<GuiObject*>*,
-	std::vector<sf::Sprite*>*,
-	std::vector<sf::Sprite*>*,
-	std::vector<sf::Sprite*>*);
+	StateInterface(LogicHandler*);
 
 	~StateInterface(void);
 	sf::Texture* getTexture(int index_of_texture);
@@ -20,6 +17,6 @@ public:
 	std::vector<sf::Sprite*>* getBgList(void);
 
 private:
-	std::vector<std::vector<sf::Sprite*>*> spritelists;	//list of sprite lists hehe
+	LogicHandler* logicHandler;
 };
 
