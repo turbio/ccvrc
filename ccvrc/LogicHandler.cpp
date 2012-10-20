@@ -11,7 +11,7 @@ LogicHandler::LogicHandler(void){
 
 	width = WIDTH;
 	height = HEIGHT;
-	stateHandler = new StateHandler(&width, &height, &textureList, &guiList);
+	stateHandler = new StateHandler(&width, &height);
 
 	window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), TITLE);
 

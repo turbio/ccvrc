@@ -9,7 +9,6 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include "LogicHandler.h"
 #include "GuiObject.h"
 #include "StateHandler.h"
 #include "GameState.h"
@@ -19,18 +18,30 @@ class LogicHandler{
 public:
 	LogicHandler(void);	//CONSTRUCTOR
 	~LogicHandler(void);	//DESTRUCTOR
-	void update(double delta_time);	//update game stuff
-	void run(void);	//main game loop
-	void setupSprites(void);
 	void addGuiObj(GuiObject* opbject_to_be_added);	//add an object to the gui list
 	sf::Texture* LogicHandler::getTexture(int index);
+	void run(void);	//main game loop / lets get this party started
 
 	struct texRes{
 		sf::Texture texture;
 		char name[1];
 	};
 
+	std::vector<GuiObject*>* getGuiList(void){
+		return &guiList;
+	};
+	std::vector<sf::Sprite*>* getfgList(void){
+		return &fgList;
+	};
+	std::vector<sf::Sprite*>* getmgList(void){
+		return &mgList;
+	};
+	std::vector<sf::Sprite*>* getbgList(void){
+		return &bgList;
+	};
 private:
+	void update(double delta_time);	//update game stuff
+	void setupSprites(void);
 	void handleEvent(sf::Event theEventToBeHandled);	//handles any and all events
 	bool loadRes(std::string directory);
 	sf::RenderWindow *window;	//the main window (probobaly the only)

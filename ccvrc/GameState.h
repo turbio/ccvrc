@@ -6,10 +6,6 @@
 #include "GuiObject.h"
 
 class StateHandler;
-sf::Texture* getTexture(int index);
-std::vector<sf::Texture*>* getTextureList(void);
-void setState(int index_of_state);
-std::vector<GuiObject*>* getGuiList(void);
 
 class GameState{
 

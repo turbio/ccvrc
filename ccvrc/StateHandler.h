@@ -5,27 +5,22 @@
 #include <string>
 #include <vector>
 #include "GameState.h"
-#include "StateInterface.h"
 
-class GameState;
+//game states
+#include "GuiTitleScreen.h"
+
+class LogicHandler;
 
 class StateHandler{
 public:
-	StateHandler(int* width_of_window, int* height_of_window, std::vector<sf::Texture*>*, std::vector<GuiObject*>*);
+	StateHandler(int* width_of_window, int* height_of_window);
 	~StateHandler(void);
 	void setupGui(void);
 	void loading(sf::RenderWindow *window, std::string text = "Loading...");
 	void loaded();
-	sf::Texture* getTexture(int index);
-	std::vector<sf::Texture*>* getTextureList(void);
-	//sf::SoundBuffer* getSound(int index);
-	//std::vector<sf::SoundBuffer*>* getSoundList(void);
-	std::vector<GuiObject*>* getGuiList(void);
 	void setState(int index_of_state);
 	GameState* getCurrentState(void);
 private:
-	std::vector<sf::Texture*>* textureList;
-	std::vector<GuiObject*>* guiList;
 	std::vector<GameState*> states;
 	
 	GameState* currentState;

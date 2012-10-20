@@ -1,27 +1,13 @@
 #include "StateHandler.h"
 
-StateHandler::StateHandler(int *w, int *h, std::vector<sf::Texture*>* tl, std::vector<GuiObject*>* gl){
+StateHandler::StateHandler(int *w, int *h){
 	width = w;
 	height = h;
-	textureList = tl;
-	guiList = gl;
 }
 
 
 StateHandler::~StateHandler(void){
 
-}
-
-sf::Texture* StateHandler::getTexture(int i){
-	return textureList->at(i);
-}
-
-std::vector<sf::Texture*>* StateHandler::getTextureList(void){
-	return textureList;
-}
-
-std::vector<GuiObject*>* StateHandler::getGuiList(void){
-	return guiList;
 }
 
 void StateHandler::setState(int index){
@@ -33,7 +19,7 @@ GameState* StateHandler::getCurrentState(){
 }
 
 void StateHandler::setupGui(void){
-	//GameState * titleScreen = new GuiTitleScreen(this);
+	GameState * titleScreen = new GuiTitleScreen(this);
 	//states.push_back(titleScreen);
 }
 
