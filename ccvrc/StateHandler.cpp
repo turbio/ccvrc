@@ -1,8 +1,10 @@
 #include "StateHandler.h"
+#include "LogicHandler.h"
 
-StateHandler::StateHandler(int *w, int *h){
+StateHandler::StateHandler(int* w, int* h, LogicHandler* _handler){
 	width = w;
 	height = h;
+	logicHandler = _handler;
 }
 
 
@@ -47,4 +49,13 @@ void StateHandler::loading(sf::RenderWindow *window, std::string message){
 
 void StateHandler::loaded(){
 	
+}
+
+//get functions for states:
+sf::Texture* StateHandler::getTexture(int index){
+	return logicHandler->getTexture(index);
+}
+
+std::vector<GuiObject*>* StateHandler::getGuiList(void){
+	return logicHandler->getGuiList();
 }

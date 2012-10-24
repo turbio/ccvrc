@@ -13,17 +13,23 @@ class LogicHandler;
 
 class StateHandler{
 public:
-	StateHandler(int* width_of_window, int* height_of_window);
+	StateHandler(int* width_of_window, int* height_of_window, LogicHandler* handler);
 	~StateHandler(void);
 	void setupGui(void);
 	void loading(sf::RenderWindow *window, std::string text = "Loading...");
 	void loaded();
 	void setState(int index_of_state);
 	GameState* getCurrentState(void);
+	std::vector<GuiObject*>* getGuiList(void);
+
+	//get functions used by game states
+	sf::Texture* getTexture(int index);
+
 private:
 	std::vector<GameState*> states;
-	
 	GameState* currentState;
+	
+	LogicHandler* logicHandler;
 
 	bool gameLoaded;
 	int *width, *height;

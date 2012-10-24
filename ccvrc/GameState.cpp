@@ -1,4 +1,5 @@
 #include "GameState.h"
+#include "StateHandler.h"
 
 GameState::GameState(std::string _name, StateHandler* _stateHandler){
 	name = _name;
