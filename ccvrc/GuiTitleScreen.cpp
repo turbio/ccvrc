@@ -24,6 +24,6 @@ GuiTitleScreen::~GuiTitleScreen(void){
 void GuiTitleScreen::update(double delta){
 	
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-		stateHandler->setState("title_screen");
+		stateHandler->setState("match_setup");
 	}
 }
