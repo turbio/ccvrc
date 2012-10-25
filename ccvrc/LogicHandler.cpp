@@ -65,7 +65,7 @@ void LogicHandler::run(void){
 void LogicHandler::update(double delta){
 	elapsedTime += (delta * 0.00001);
 
-	if(stateHandler->getCurrentState() == NULL){
+	if(stateHandler->getCurrentState() != NULL){
 		stateHandler->getCurrentState()->update(delta);
 	}
 

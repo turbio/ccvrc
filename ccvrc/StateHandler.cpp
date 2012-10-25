@@ -12,8 +12,23 @@ StateHandler::~StateHandler(void){
 
 }
 
+void StateHandler::update(double delta){
+	currentState->update(delta);
+}
+
 void StateHandler::setState(int index){
 	currentState = states.at(index);
+}
+
+void StateHandler::setState(std::string findname){
+	for(int i = 0; i < states.size(); i++){
+		if(states.at(i)->name == findname){
+			currentState = states.at(i);
+			return;
+		}
+	}
+
+	printf("state not found\n");
 }
 
 GameState* StateHandler::getCurrentState(){
@@ -22,7 +37,8 @@ GameState* StateHandler::getCurrentState(){
 
 void StateHandler::setupGui(void){
 	GameState * titleScreen = new GuiTitleScreen(this);
-	//states.push_back(titleScreen);
+	states.push_back(titleScreen);
+	currentState = titleScreen;
 }
 
 void StateHandler::loading(sf::RenderWindow *window, std::string message){

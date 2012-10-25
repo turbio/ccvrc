@@ -13,10 +13,8 @@ public:
 	GameState(std::string name_of_state, StateHandler* game_state_handler_reference);
 	~GameState(void);
 	virtual void update(double delta_time);
-
-protected:
 	std::string name;
-
+protected:
 	StateHandler* stateHandler;
 };
 

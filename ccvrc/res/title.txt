@@ -1,3 +1,0 @@
-i titlebgtex title.png
-s titlebg titlebgtex 0 0 0
-t strtbtn "click to start" 0 0

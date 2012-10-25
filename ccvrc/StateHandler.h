@@ -19,12 +19,21 @@ public:
 	void loading(sf::RenderWindow *window, std::string text = "Loading...");
 	void loaded();
 	void setState(int index_of_state);
+	void setState(std::string statename);
 	GameState* getCurrentState(void);
 	std::vector<GuiObject*>* getGuiList(void);
+
+	void update(double delta);
 
 	//get functions used by game states
 	sf::Texture* getTexture(int index);
 
+	int* getWindowWidth(void){
+		return width;
+	}
+	int* getWindowHeight(void){
+		return height;
+	}
 private:
 	std::vector<GameState*> states;
 	GameState* currentState;
