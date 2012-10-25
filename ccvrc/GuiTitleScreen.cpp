@@ -11,7 +11,7 @@ GuiTitleScreen::GuiTitleScreen(StateHandler* handler) : GameState("title_screen"
 	stateHandler->getGuiList()->push_back(titleScreenBg);
 
 	logo = new GuiObject("logo");
-	logo->setTexture(*stateHandler->getTexture(1));\
+	logo->setTexture(*stateHandler->getTexture(1));
 	logo->setPosition((*stateHandler->getWindowWidth() / 2) - (logo->getTexture()->getSize().x / 2), 
 		(*stateHandler->getWindowHeight() / 2) - (logo->getTexture()->getSize().y / 2));
 	stateHandler->getGuiList()->push_back(logo);
