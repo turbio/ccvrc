@@ -1,9 +1,6 @@
 #art
 main_menu_bg.png
 logo.png
-bottom_bar_bg.png
-top_bar_bg.png
-bar.png
 
 #music
 title.ogg
