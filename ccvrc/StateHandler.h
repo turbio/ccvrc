@@ -8,6 +8,7 @@
 
 //game states
 #include "GuiTitleScreen.h"
+#include "MatchSetup.h"
 
 class LogicHandler;
 

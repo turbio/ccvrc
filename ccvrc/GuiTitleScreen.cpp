@@ -22,7 +22,7 @@ GuiTitleScreen::~GuiTitleScreen(void){
 }
 
 void GuiTitleScreen::update(double delta){
-	
+
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
 		stateHandler->setState("match_setup");
 	}

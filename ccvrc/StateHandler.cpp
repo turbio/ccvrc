@@ -37,8 +37,12 @@ GameState* StateHandler::getCurrentState(){
 
 void StateHandler::setupGui(void){
 	GameState * titleScreen = new GuiTitleScreen(this);
-	states.push_back(titleScreen);
 	currentState = titleScreen;
+
+	GameState * matchSetup = new MatchSetup(this);
+
+	states.push_back(titleScreen);
+	states.push_back(matchSetup);
 }
 
 void StateHandler::loading(sf::RenderWindow *window, std::string message){
