@@ -1,6 +1,7 @@
 #art
 main_menu_bg.png
 logo.png
+match_setup_panel.png
 
 #music
 title.ogg

@@ -22,7 +22,6 @@ public:
 	void setState(int index_of_state);
 	void setState(std::string statename);
 	GameState* getCurrentState(void);
-	std::vector<GuiObject*>* getGuiList(void);
 
 	void update(double delta);
 

@@ -13,3 +13,7 @@ GameState::~GameState(void){
 void GameState::update(double delta){
 
 }
+
+void GameState::callState(void){
+
+}

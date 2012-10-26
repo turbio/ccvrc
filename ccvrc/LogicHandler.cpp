@@ -46,14 +46,19 @@ void LogicHandler::run(void){
 
 		window->clear(sf::Color(20, 180, 255));
 
-		for(int i = 0; i < guiList.size(); i++){
-			window->draw(*guiList.at(i));
-		}for(int i = 0; i < fgList.size(); i++){
-			window->draw(*guiList.at(i));
-		}for(int i = 0; i < mgList.size(); i++){
-			window->draw(*guiList.at(i));
-		}for(int i = 0; i < bgList.size(); i++){
-			window->draw(*guiList.at(i));
+		if(stateHandler->getCurrentState() != NULL){
+			for(int i = 0; i < stateHandler->getCurrentState()->getbgList()->size(); i++){
+				window->draw(*stateHandler->getCurrentState()->getbgList()->at(i));
+			}
+			for(int i = 0; i < stateHandler->getCurrentState()->getmgList()->size(); i++){
+				window->draw(*stateHandler->getCurrentState()->getmgList()->at(i));
+			}
+			for(int i = 0; i < stateHandler->getCurrentState()->getfgList()->size(); i++){
+				window->draw(*stateHandler->getCurrentState()->getfgList()->at(i));
+			}
+			for(int i = 0; i < stateHandler->getCurrentState()->getGuiList()->size(); i++){
+				window->draw(*stateHandler->getCurrentState()->getGuiList()->at(i));
+			}
 		}
 		
 		deltaTime = (double)clock.getElapsedTime().asMicroseconds();
@@ -68,12 +73,6 @@ void LogicHandler::update(double delta){
 	if(stateHandler->getCurrentState() != NULL){
 		stateHandler->getCurrentState()->update(delta);
 	}
-
-	for(int i = 0; i < guiList.size(); i++){
-		if(guiList.at(i) == NULL){
-			guiList.erase(guiList.begin() + i - 1);
-		}
-	}
 }
 
 void LogicHandler::handleEvent(sf::Event evt){
@@ -83,10 +82,6 @@ void LogicHandler::handleEvent(sf::Event evt){
 		evt.type == sf::Event::MouseButtonPressed) && titleScreen){
 			titleScreen = false;
 	}
-}
-
-void LogicHandler::addGuiObj(GuiObject *object){
-	guiList.push_back(object);
 }
 
 sf::Texture* LogicHandler::getTexture(int index){

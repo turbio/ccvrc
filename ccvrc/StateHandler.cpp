@@ -18,12 +18,13 @@ void StateHandler::update(double delta){
 
 void StateHandler::setState(int index){
 	currentState = states.at(index);
+	currentState->callState();
 }
 
 void StateHandler::setState(std::string findname){
 	for(int i = 0; i < states.size(); i++){
 		if(states.at(i)->name == findname){
-			currentState = states.at(i);
+			setState(i);
 			return;
 		}
 	}
@@ -74,8 +75,4 @@ void StateHandler::loaded(){
 //get functions for states:
 sf::Texture* StateHandler::getTexture(int index){
 	return logicHandler->getTexture(index);
-}
-
-std::vector<GuiObject*>* StateHandler::getGuiList(void){
-	return logicHandler->getGuiList();
 }
