@@ -3,6 +3,8 @@
 
 GuiObject* titleScreenBg;
 GuiObject* logo;
+bool transition = false;
+float speed = 0.0f;
 
 GuiTitleScreen::GuiTitleScreen(StateHandler* handler) : GameState("title_screen", handler){
 	titleScreenBg = new GuiObject("title screen");
@@ -24,6 +26,13 @@ GuiTitleScreen::~GuiTitleScreen(void){
 void GuiTitleScreen::update(double delta){
 
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-		stateHandler->setState("match_setup");
+		transition = true;
+	}else if(transition){
+		speed += 0.0005f;
+		logo->move(0, speed);
+
+		if(logo->getPosition().y > *stateHandler->getWindowHeight()){
+			stateHandler->setState("match_setup");
+		}
 	}
 }

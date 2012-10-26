@@ -19,21 +19,21 @@ public:
 	std::vector<GuiObject*>* getGuiList(void){
 		return &guiList;
 	};
-	std::vector<sf::Sprite*>* getfgList(void){
+	std::vector<sf::Drawable*>* getfgList(void){
 		return &fgList;
 	};
-	std::vector<sf::Sprite*>* getmgList(void){
+	std::vector<sf::Drawable*>* getmgList(void){
 		return &mgList;
 	};
-	std::vector<sf::Sprite*>* getbgList(void){
+	std::vector<sf::Drawable*>* getbgList(void){
 		return &bgList;
 	};
 protected:
 	StateHandler* stateHandler;
 
 	std::vector<GuiObject*> guiList;
-	std::vector<sf::Sprite*> fgList;
-	std::vector<sf::Sprite*> mgList;
-	std::vector<sf::Sprite*> bgList;
+	std::vector<sf::Drawable*> fgList;
+	std::vector<sf::Drawable*> mgList;
+	std::vector<sf::Drawable*> bgList;
 };
 

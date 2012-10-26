@@ -21,6 +21,7 @@ public:
 	void loaded();
 	void setState(int index_of_state);
 	void setState(std::string statename);
+	sf::Font getFont(void);
 	GameState* getCurrentState(void);
 
 	void update(double delta);
@@ -42,5 +43,7 @@ private:
 
 	bool gameLoaded;
 	int *width, *height;
+
+	sf::Font loadfont;
 };
 
