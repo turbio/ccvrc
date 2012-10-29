@@ -43,28 +43,31 @@ void LogicHandler::run(void){
 		
 		clock.restart();
 		LogicHandler::update(deltaTime);
-
-		window->clear(sf::Color(20, 180, 255));
-
-		if(stateHandler->getCurrentState() != NULL){
-			for(int i = 0; i < stateHandler->getCurrentState()->getbgList()->size(); i++){
-				window->draw(*stateHandler->getCurrentState()->getbgList()->at(i));
-			}
-			for(int i = 0; i < stateHandler->getCurrentState()->getmgList()->size(); i++){
-				window->draw(*stateHandler->getCurrentState()->getmgList()->at(i));
-			}
-			for(int i = 0; i < stateHandler->getCurrentState()->getfgList()->size(); i++){
-				window->draw(*stateHandler->getCurrentState()->getfgList()->at(i));
-			}
-			for(int i = 0; i < stateHandler->getCurrentState()->getGuiList()->size(); i++){
-				window->draw(*stateHandler->getCurrentState()->getGuiList()->at(i));
-			}
-		}
+		LogicHandler::render();
 		
 		deltaTime = (double)clock.getElapsedTime().asMicroseconds();
-
-		window->display();
     }
+}
+
+void LogicHandler::render(void){
+	window->clear(sf::Color(20, 180, 255));
+
+	if(stateHandler->getCurrentState() != NULL){
+		for(int i = 0; i < stateHandler->getCurrentState()->getbgList()->size(); i++){
+			window->draw(*stateHandler->getCurrentState()->getbgList()->at(i));
+		}
+		for(int i = 0; i < stateHandler->getCurrentState()->getmgList()->size(); i++){
+			window->draw(*stateHandler->getCurrentState()->getmgList()->at(i));
+		}
+		for(int i = 0; i < stateHandler->getCurrentState()->getfgList()->size(); i++){
+			window->draw(*stateHandler->getCurrentState()->getfgList()->at(i));
+		}
+		for(int i = 0; i < stateHandler->getCurrentState()->getGuiList()->size(); i++){
+			window->draw(*stateHandler->getCurrentState()->getGuiList()->at(i));
+		}
+	}
+
+	window->display();
 }
 
 void LogicHandler::update(double delta){

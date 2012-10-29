@@ -28,6 +28,7 @@ public:
 
 private:
 	void update(double delta_time);	//update game stuff
+	void render(void);
 	void setupSprites(void);
 	void handleEvent(sf::Event theEventToBeHandled);	//handles any and all events
 	bool loadRes(std::string directory);
