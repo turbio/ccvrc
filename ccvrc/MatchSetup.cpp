@@ -28,12 +28,8 @@ MatchSetup::MatchSetup(StateHandler* handler) : GameState("match_setup", handler
 
 	homeTxt->setPosition(0, 0);
 	homeTxt->setColor(sf::Color(255, 0, 255));
-	
 
-	//text.setPosition(text.getCharacterSize() + 5, 5 + (*height / 2));
-	//text.setColor(sf::Color(0, 130, 205));
-
-	//fgList.push_back(homeTxt);
+	//bgList.push_back(homeTxt);
 	//fgList.push_back(awayTxt);
 }
 
