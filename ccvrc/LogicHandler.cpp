@@ -35,17 +35,25 @@ void LogicHandler::run(void){
 
 	double deltaTime = 0;
 	sf::Clock clock;
+
+	double startTime, endTime;
 	while (window->isOpen()){
+		startTime = clock.getElapsedTime().asMicroseconds();
+
 		sf::Event event;
 		while (window->pollEvent(event)){
 			handleEvent(event);
         }
-		
-		clock.restart();
+
 		LogicHandler::update(deltaTime);
-		LogicHandler::render();
-		
-		deltaTime = (double)clock.getElapsedTime().asMicroseconds();
+		if(clock.getElapsedTime().asMilliseconds() % 100 == 0){
+			//LogicHandler::render();
+		}
+		endTime = clock.getElapsedTime().asMicroseconds();
+
+		deltaTime = endTime - startTime;
+
+		std::cout << ":> delta: " << deltaTime << "\n"; 
     }
 }
 
