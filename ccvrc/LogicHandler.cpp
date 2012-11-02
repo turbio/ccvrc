@@ -1,7 +1,7 @@
 #include "LogicHandler.h"
 
 #define WIDTH 800	//window default width
-#define HEIGHT 600	//window default height
+#define HEIGHT 600	//window	default height
 #define TITLE "Centa Chicken Vs. Russian Chicken"
 
 //CONSTRUCTOR
@@ -47,7 +47,7 @@ void LogicHandler::run(void){
 
 		LogicHandler::update(deltaTime);
 		if(clock.getElapsedTime().asMilliseconds() % 100 == 0){
-			//LogicHandler::render();
+			LogicHandler::render();
 		}
 		endTime = clock.getElapsedTime().asMicroseconds();
 
