@@ -2,8 +2,8 @@
 #include "StateHandler.h"
 
 #define PANE_OFFSET 50
-#define CHARACTER_ICON_SIZE 128.0
-#define CENTA_POSITION_OFFSET 10, 10
+#define CHARACTER_ICON_SIZE 64.0
+#define CENTA_POSITION_OFFSET 10, 20
 
 sf::Sprite rightPane, leftPane, background, centaIcon;
 sf::Text * homeTxt, * awayTxt;

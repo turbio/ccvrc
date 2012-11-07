@@ -1,4 +1,4 @@
-#art
+#images
 main_menu_bg.png
 logo_no_blend.png
 match_setup_panel.png
