@@ -46,14 +46,11 @@ void LogicHandler::run(void){
         }
 
 		LogicHandler::update(deltaTime);
-		if(clock.getElapsedTime().asMilliseconds() % 100 == 0){
-			LogicHandler::render();
-		}
+		LogicHandler::render();
+
 		endTime = clock.getElapsedTime().asMicroseconds();
 
 		deltaTime = endTime - startTime;
-
-		std::cout << ":> delta: " << deltaTime << "\n"; 
     }
 }
 

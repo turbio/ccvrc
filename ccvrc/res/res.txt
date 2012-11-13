@@ -1,9 +1,9 @@
 #images
 main_menu_bg.png
-logo_no_blend.png
+logo.png
 match_setup_panel.png
 btns_radio_select.png
-tmp_centa.png
+tmp_cen.png
 tmp_rus.png
 
 #music
