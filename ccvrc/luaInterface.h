@@ -19,7 +19,7 @@ public:
 	void luaError(const char * type);
 
 protected:
-	virtual void addSprite();
+	virtual int addSprite(lua_State* l);
 
 private:
 	lua_State* luaState;

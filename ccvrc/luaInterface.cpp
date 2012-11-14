@@ -43,3 +43,7 @@ void luaInterface::luaError(const char * type){
 	lua_call(luaState, 1, 0);
 	lua_pop(luaState, 1);
 }
+
+int luaInterface::addSprite(lua_State* ls){
+	return 0;
+}
