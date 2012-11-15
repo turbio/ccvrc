@@ -1,9 +1,9 @@
 #include "GameState.h"
 #include "StateHandler.h"
 
-GameState::GameState(std::string _name, StateHandler* _stateHandler){
-	name = _name;
+GameState::GameState(const char * _path, StateHandler* _stateHandler){
 	stateHandler = _stateHandler;
+	luaInterface = new LuaInterface(_path);
 }
 
 GameState::~GameState(void){

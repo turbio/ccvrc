@@ -9,18 +9,23 @@ extern "C"{
 #include <lauxlib.h>
 }
 
-class luaInterface{
+class LuaInterface{
 
 public:
-	luaInterface(const char * path);
-	~luaInterface(void);
+	LuaInterface(const char * path);
+	~LuaInterface(void);
 	bool luaInit(void);
 	void luaEvent(int target, const char * type);
 	void luaError(const char * type);
 
-protected:
-	virtual int addSprite(lua_State* l);
-
 private:
+	static int addPolySprite(lua_State*);
+	static int addStringSprite(lua_State*);
+	static int addSprite(lua_State*);
+	/*virtual int getPropties(lua_State*);
+	virtual int setPropties(lua_State*);
+	virtual int interpolate(lua_State*);
+	virtual int callState(lua_State*);*/
+
 	lua_State* luaState;
 };

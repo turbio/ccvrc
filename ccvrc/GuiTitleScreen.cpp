@@ -6,8 +6,8 @@ GuiObject* logo;
 bool transition = false;
 float speed = 0.0f;
 
-GuiTitleScreen::GuiTitleScreen(StateHandler* handler) : GameState("title_screen", handler){
-	titleScreenBg = new GuiObject("title screen");
+GuiTitleScreen::GuiTitleScreen(StateHandler* handler) : GameState("lua/main_menu.lua", handler){
+	titleScreenBg = new GuiObject("title screen bg");
 	titleScreenBg->setTexture(*stateHandler->getTexture(0));
 	titleScreenBg->setPosition(0, 0);
 	bgList.push_back(titleScreenBg);
@@ -32,7 +32,7 @@ void GuiTitleScreen::update(double delta){
 		logo->move(0, speed);
 
 		if(logo->getPosition().y > *stateHandler->getWindowHeight()){
-			stateHandler->setState("match_setup");
+			stateHandler->setState(1);
 		}
 	}
 }

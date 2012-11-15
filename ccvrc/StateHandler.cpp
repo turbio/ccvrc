@@ -23,17 +23,6 @@ void StateHandler::setState(int index){
 	currentState->callState();
 }
 
-void StateHandler::setState(std::string findname){
-	for(int i = 0; i < states.size(); i++){
-		if(states.at(i)->name == findname){
-			setState(i);
-			return;
-		}
-	}
-
-	printf("state not found\n");
-}
-
 GameState* StateHandler::getCurrentState(){
 	return currentState;
 }
