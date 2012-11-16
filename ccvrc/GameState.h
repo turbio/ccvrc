@@ -8,7 +8,7 @@
 
 class StateHandler;
 
-class GameState{
+class GameState : public LuaInterface{
 
 public:
 	GameState(const char * lua_path, StateHandler* game_state_handler_reference);
@@ -28,9 +28,11 @@ public:
 	std::vector<sf::Drawable*>* getbgList(void){
 		return &bgList;
 	};
+
+	void addPolySprite(int index, int x_position, int y_postion,
+		int width, int height, int color);
 protected:
 	StateHandler* stateHandler;
-	LuaInterface* luaInterface;
 
 	std::vector<GuiObject*> guiList;
 	std::vector<sf::Drawable*> fgList;

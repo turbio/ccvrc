@@ -1,6 +1,7 @@
-#include "luaInterface.h"
+#include "LuaInterface.h"
 
 LuaInterface::LuaInterface(const char * path){
+	//instance = this;
 	luaState = lua_open();
 	luaL_openlibs(luaState);
 
@@ -51,16 +52,17 @@ void LuaInterface::luaError(const char * type){
 int LuaInterface::addPolySprite(lua_State* l){
 	//takes arguments int index, int x, int y, int width, int height, and optionaly int color
 
+	int index = 0, xpos = 0, ypos = 0, width = 0, height = 0, color = -1;
 	int argCount = lua_gettop(l);
 
-	
 	if(argCount < 5){	//need at least 5 parameters (index, x, y, width, height)
 		//error to few arguments
-		printf("error to few arguments\n");
+		printf("error: too few arguments\n");
 		return 0;
+	}else if(argCount > 6){
+		//error to many arguments
+		printf("caution: too many arguments\n");
 	}
-
-	int index = -1, xpos = -1, ypos = -1, width = -1, height = -1, color = -1;
 
 	index = lua_tonumber(l, 1);	//get index (1st param)
 	xpos = lua_tonumber(l, 2);	//get x position (2nd param)
@@ -71,12 +73,41 @@ int LuaInterface::addPolySprite(lua_State* l){
 		color = lua_tonumber(l, 6);
 	}
 
-	std::printf("\ninfo: %d %d %d %d %d %d", index, xpos, ypos, width, height, color);
+	std::printf("info: %d %d %d %d %d %d\n", index, xpos, ypos, width, height, color);
+	//instance.addPolySprite(index, xpos, ypos, width, height, color);
 
 	return 0;
 }
 
+void LuaInterface::addPolySprite(int intex, int x, int y, int w, int h, int color){
+	
+}
+
 int LuaInterface::addStringSprite(lua_State* l){
+	//takes parameters int index, int x, int y, and optionaly string txt, int color
+
+	std::string text = "NULL";
+	int index, xpos, ypos, color = -1;
+	int paramCount = lua_gettop(l);
+	
+	if(paramCount < 3){
+		printf("error: too few arguments");
+		return 0;
+	}else if(paramCount > 5){
+		printf("caution: too many arguments");
+	}
+
+	index = lua_tonumber(l, 1);
+	xpos = lua_tonumber(l, 2);
+	ypos = lua_tonumber(l, 3);
+	text = lua_tostring(l, 4);
+	if(paramCount > 4){
+		color = lua_tonumber(l, 5);
+	}
+
+
+	printf("params: %d %d %d %s %d\n", index, xpos, ypos, text.c_str(), color);
+
 	return 0;
 }
 

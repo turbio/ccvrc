@@ -1,4 +1,5 @@
-addPolySprite(1, 2, 3, 0, 6)
+addPolySprite(2, 10, 10, 100, 100, 0xffffff);
+--addStringSprite(1, 2, 3, 4, 5);
 
 function init()
 

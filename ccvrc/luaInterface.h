@@ -17,8 +17,11 @@ public:
 	bool luaInit(void);
 	void luaEvent(int target, const char * type);
 	void luaError(const char * type);
+	virtual void addPolySprite(int intex, int x, int y, int w, int h, int color);
 
 private:
+	static LuaInterface instance;
+
 	static int addPolySprite(lua_State*);
 	static int addStringSprite(lua_State*);
 	static int addSprite(lua_State*);

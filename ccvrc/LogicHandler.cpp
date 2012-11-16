@@ -147,7 +147,7 @@ bool LogicHandler::loadRes(std::string dir){
 
 					sf::Sound *player = new sf::Sound();
 					player->setBuffer(*buffer);
-					player->play();
+					//player->play();
 					player->setLoop(true);
 
 					std::cout << "+";
