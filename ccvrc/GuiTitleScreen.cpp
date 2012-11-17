@@ -3,6 +3,8 @@
 
 GuiObject* titleScreenBg;
 GuiObject* logo;
+sf::Text * test;
+
 bool transition = false;
 float speed = 0.0f;
 
@@ -17,6 +19,12 @@ GuiTitleScreen::GuiTitleScreen(StateHandler* handler) : GameState("lua/main_menu
 	logo->setPosition((*stateHandler->getWindowWidth() / 2) - (logo->getTexture()->getSize().x / 2), 
 		(*stateHandler->getWindowHeight() / 2) - (logo->getTexture()->getSize().y / 2));
 	guiList.push_back(logo);
+
+	test = new sf::Text("sumoz", *stateHandler->getFont(), 128);
+	test->setPosition(0, 0);
+	test->setColor(sf::Color(255, 0, 255));
+
+	fgList.push_back(test);
 }
 
 GuiTitleScreen::~GuiTitleScreen(void){

@@ -6,7 +6,8 @@ StateHandler::StateHandler(int* w, int* h, LogicHandler* _handler){
 	height = h;
 	logicHandler = _handler;
 
-	loadfont.loadFromFile("res/font.ttf");
+	loadfont = new sf::Font();
+	loadfont->loadFromFile("res/font.ttf");
 }
 
 
@@ -41,7 +42,7 @@ void StateHandler::setupGui(void){
 void StateHandler::loading(sf::RenderWindow *window, std::string message){
 	gameLoaded = false;
 
-	sf::Text text(message, loadfont, 128);
+	sf::Text text(message, *loadfont, 128);
 	
 	window->clear(sf::Color(20, 180, 255));
 
@@ -57,7 +58,7 @@ void StateHandler::loading(sf::RenderWindow *window, std::string message){
 	
 }
 
-sf::Font StateHandler::getFont(void){
+sf::Font* StateHandler::getFont(void){
 	return loadfont;
 }
 

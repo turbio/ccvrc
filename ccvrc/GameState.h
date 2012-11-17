@@ -8,7 +8,7 @@
 
 class StateHandler;
 
-class GameState : public LuaInterface{
+class GameState{
 
 public:
 	GameState(const char * lua_path, StateHandler* game_state_handler_reference);
@@ -33,6 +33,7 @@ public:
 		int width, int height, int color);
 protected:
 	StateHandler* stateHandler;
+	LuaInterface* luaInterface;
 
 	std::vector<GuiObject*> guiList;
 	std::vector<sf::Drawable*> fgList;

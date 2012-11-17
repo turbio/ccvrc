@@ -29,8 +29,8 @@ MatchSetup::MatchSetup(StateHandler* handler) : GameState("match_setup", handler
 	centaIcon.setPosition(rightPane.getPosition());
 	fgList.push_back(&centaIcon);
 
-	homeTxt = new sf::Text("Home", stateHandler->getFont(), 128);
-	awayTxt = new sf::Text("Away", stateHandler->getFont(), 128);
+	homeTxt = new sf::Text("Home", *stateHandler->getFont(), 128);
+	awayTxt = new sf::Text("Away", *stateHandler->getFont(), 128);
 
 	homeTxt->setPosition(0, 0);
 	homeTxt->setColor(sf::Color(255, 0, 255));

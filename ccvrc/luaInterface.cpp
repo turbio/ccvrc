@@ -1,12 +1,16 @@
 #include "LuaInterface.h"
+#include "GameState.h"
 
-LuaInterface::LuaInterface(const char * path){
-	//instance = this;
+int luaAddPolySprite(lua_State*);
+GameState * luaInterface; 
+
+LuaInterface::LuaInterface(const char * path, GameState * _interface){
+	luaInterface = _interface;
 	luaState = lua_open();
 	luaL_openlibs(luaState);
 
 	//register functions
-	lua_register(luaState, "addPolySprite", addPolySprite);
+	lua_register(luaState, "addPolySprite", luaAddPolySprite);
 	lua_register(luaState, "addStringSprite", addStringSprite);
 	lua_register(luaState, "addSprite", addSprite);
 
@@ -49,7 +53,7 @@ void LuaInterface::luaError(const char * type){
 	lua_pop(luaState, 1);
 }
 
-int LuaInterface::addPolySprite(lua_State* l){
+int luaAddPolySprite(lua_State* l){
 	//takes arguments int index, int x, int y, int width, int height, and optionaly int color
 
 	int index = 0, xpos = 0, ypos = 0, width = 0, height = 0, color = -1;
@@ -73,14 +77,12 @@ int LuaInterface::addPolySprite(lua_State* l){
 		color = lua_tonumber(l, 6);
 	}
 
-	std::printf("info: %d %d %d %d %d %d\n", index, xpos, ypos, width, height, color);
-	//instance.addPolySprite(index, xpos, ypos, width, height, color);
+	//std::printf("\ninfo: %d %d %d %d %d %d\n", index, xpos, ypos,
+	//	width, height, color);
+
+	luaInterface->addPolySprite(index, xpos, ypos, width, height, color);
 
 	return 0;
-}
-
-void LuaInterface::addPolySprite(int intex, int x, int y, int w, int h, int color){
-	
 }
 
 int LuaInterface::addStringSprite(lua_State* l){

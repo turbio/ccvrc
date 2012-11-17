@@ -1,6 +1,6 @@
 #images
 main_menu_bg.png
-logo.png
+tmp_centa.png
 match_setup_panel.png
 btns_radio_select.png
 tmp_cen.png

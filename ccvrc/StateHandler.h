@@ -20,7 +20,7 @@ public:
 	void loading(sf::RenderWindow *window, std::string text = "Loading...");
 	void loaded();
 	void setState(int index_of_state);
-	sf::Font getFont(void);
+	sf::Font* getFont(void);
 	GameState* getCurrentState(void);
 
 	void update(double delta);
@@ -43,6 +43,6 @@ private:
 	bool gameLoaded;
 	int *width, *height;
 
-	sf::Font loadfont;
+	sf::Font * loadfont;
 };
 
