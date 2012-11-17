@@ -12,19 +12,20 @@ GuiTitleScreen::GuiTitleScreen(StateHandler* handler) : GameState("lua/main_menu
 	titleScreenBg = new GuiObject("title screen bg");
 	titleScreenBg->setTexture(*stateHandler->getTexture(0));
 	titleScreenBg->setPosition(0, 0);
-	bgList.push_back(titleScreenBg);
+	sprites.at(0).push_back(titleScreenBg);
 
 	logo = new GuiObject("logo");
 	logo->setTexture(*stateHandler->getTexture(1));
 	logo->setPosition((*stateHandler->getWindowWidth() / 2) - (logo->getTexture()->getSize().x / 2), 
 		(*stateHandler->getWindowHeight() / 2) - (logo->getTexture()->getSize().y / 2));
-	guiList.push_back(logo);
+	sprites[0].push_back(logo);
 
 	test = new sf::Text("sumoz", *stateHandler->getFont(), 128);
-	test->setPosition(0, 0);
+	test->setPosition(100, 100);
 	test->setColor(sf::Color(255, 0, 255));
-
-	fgList.push_back(test);
+	//fgList.pu
+	
+	sprites[0].push_back(test);
 }
 
 GuiTitleScreen::~GuiTitleScreen(void){

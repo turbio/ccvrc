@@ -18,6 +18,12 @@ void GameState::callState(void){
 
 }
 
+void GameState::addSprite(int index, sf::Drawable* spr){
+	while(sprites.size() < index){
+		//sprites.push_back();
+	}
+}
+
 void GameState::addPolySprite(int index, int x, int y, int w, int h, int color){
 
 	//printf("\npoly added info: %d %d %d %d %d %d \n", index, x, y, w, h, color);
@@ -33,5 +39,5 @@ void GameState::addPolySprite(int index, int x, int y, int w, int h, int color){
 	int b = color % 256;
 	poly->setFillColor(sf::Color(r, g, b));
 
-	fgList.push_back(poly);
+	sprites[index].push_back(poly);
 }

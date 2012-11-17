@@ -13,21 +13,21 @@ bool transIn = false;
 MatchSetup::MatchSetup(StateHandler* handler) : GameState("match_setup", handler){
 	rightPane.setTexture(*stateHandler->getTexture(2));
 	rightPane.setPosition((*stateHandler->getWindowWidth()) - rightPane.getTexture()->getSize().x, 0);
-	mgList.push_back(&rightPane);
+	sprites[0].push_back(&rightPane);
 
 	leftPane.setTexture(*stateHandler->getTexture(2));
 	leftPane.setTextureRect(sf::IntRect(leftPane.getTexture()->getSize().x,	//mirror texture horizontaly
 		0, -leftPane.getTexture()->getSize().x, leftPane.getTexture()->getSize().y));
-	mgList.push_back(&leftPane);
+	sprites[0].push_back(&leftPane);
 
 	background.setTexture(*stateHandler->getTexture(0));
-	bgList.push_back(&background);
+	sprites[0].push_back(&background);
 
 	centaIcon.setTexture(*stateHandler->getTexture(4));
 	centaIcon.setScale(float(CHARACTER_ICON_SIZE) / float(centaIcon.getTexture()->getSize().x),
 		float(CHARACTER_ICON_SIZE) / float(centaIcon.getTexture()->getSize().y));
 	centaIcon.setPosition(rightPane.getPosition());
-	fgList.push_back(&centaIcon);
+	sprites[0].push_back(&centaIcon);
 
 	homeTxt = new sf::Text("Home", *stateHandler->getFont(), 128);
 	awayTxt = new sf::Text("Away", *stateHandler->getFont(), 128);

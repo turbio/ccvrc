@@ -58,17 +58,10 @@ void LogicHandler::render(void){
 	window->clear(sf::Color(20, 180, 255));
 
 	if(stateHandler->getCurrentState() != NULL){
-		for(int i = 0; i < stateHandler->getCurrentState()->getbgList()->size(); i++){
-			window->draw(*stateHandler->getCurrentState()->getbgList()->at(i));
-		}
-		for(int i = 0; i < stateHandler->getCurrentState()->getmgList()->size(); i++){
-			window->draw(*stateHandler->getCurrentState()->getmgList()->at(i));
-		}
-		for(int i = 0; i < stateHandler->getCurrentState()->getfgList()->size(); i++){
-			window->draw(*stateHandler->getCurrentState()->getfgList()->at(i));
-		}
-		for(int i = 0; i < stateHandler->getCurrentState()->getGuiList()->size(); i++){
-			window->draw(*stateHandler->getCurrentState()->getGuiList()->at(i));
+		for(int list = 0; list < stateHandler->getCurrentState()->getSpriteList()->size(); list++){
+			for(int sprite = 0; sprite < stateHandler->getCurrentState()->getSpriteList()->at(list).size(); sprite++){
+				window->draw(*stateHandler->getCurrentState()->getSpriteList()->at(list).at(sprite));
+			}
 		}
 	}
 

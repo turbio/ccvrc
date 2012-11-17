@@ -15,18 +15,9 @@ public:
 	~GameState(void);
 	virtual void update(double delta_time);
 	virtual void callState(void);
-
-	std::vector<GuiObject*>* getGuiList(void){
-		return &guiList;
-	};
-	std::vector<sf::Drawable*>* getfgList(void){
-		return &fgList;
-	};
-	std::vector<sf::Drawable*>* getmgList(void){
-		return &mgList;
-	};
-	std::vector<sf::Drawable*>* getbgList(void){
-		return &bgList;
+	void addSprite(int index, sf::Drawable*);
+	std::vector<std::vector<sf::Drawable*>>* getSpriteList(void){
+		return &sprites;
 	};
 
 	void addPolySprite(int index, int x_position, int y_postion,
@@ -35,10 +26,11 @@ protected:
 	StateHandler* stateHandler;
 	LuaInterface* luaInterface;
 
-	std::vector<GuiObject*> guiList;
-	std::vector<sf::Drawable*> fgList;
-	std::vector<sf::Drawable*> mgList;
-	std::vector<sf::Drawable*> bgList;
+	//std::vector<GuiObject*> guiList;
+	//std::vector<sf::Drawable*> fgList;
+	//std::vector<sf::Drawable*> mgList;
+	//std::vector<sf::Drawable*> bgList;
+
+	std::vector<std::vector<sf::Drawable*>> sprites;
 
 };
-
