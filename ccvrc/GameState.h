@@ -22,6 +22,7 @@ public:
 
 	void addPolySprite(int index, int x_position, int y_postion,
 		int width, int height, int color);
+	void addStringSprite(int index, int x, int y, int size, std::string text, int color);
 protected:
 	StateHandler* stateHandler;
 	LuaInterface* luaInterface;

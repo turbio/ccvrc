@@ -156,6 +156,7 @@ bool LogicHandler::loadRes(std::string dir){
 		for(int i = 0; i < 53 + dir.length(); i++){
 			std::cout << ":";
 		}
+		std::cout << "\n";
 	}else{
 		return false;
 	}

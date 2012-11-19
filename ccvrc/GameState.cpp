@@ -19,9 +19,15 @@ void GameState::callState(void){
 }
 
 void GameState::addSprite(int index, sf::Drawable* spr){
-	while(sprites.size() < index){
-		//sprites.push_back();
+	printf("adding sprite index: %d list size: %d\n", index, sprites.size());
+	while(sprites.size() <= index){
+		std::vector<sf::Drawable*> vec;
+		sprites.push_back(vec);
+		printf("added new index\n");
 	}
+	printf("new size: %d\n", sprites.size());
+
+	sprites.at(index).push_back(spr);
 }
 
 void GameState::addPolySprite(int index, int x, int y, int w, int h, int color){
@@ -39,5 +45,19 @@ void GameState::addPolySprite(int index, int x, int y, int w, int h, int color){
 	int b = color % 256;
 	poly->setFillColor(sf::Color(r, g, b));
 
-	sprites[index].push_back(poly);
+	addSprite(index, poly);
+}
+
+void GameState::addStringSprite(int index, int x, int y, int size, std::string text, int color){
+	printf("adding string sprite: index: %d x: %d y: %d size: %d string: %s color: %d\n", index, x, y, size, text.c_str(), color);
+
+	sf::Text * spr = new sf::Text(text, *stateHandler->getFont(), size);
+
+	int r = ((color / 256) / 256) % 256;
+	int g = (color / 256) % 256;
+	int b = color % 256;
+	spr->setColor(sf::Color(r, g, b));
+	spr->setPosition(x, y);
+
+	addSprite(index, spr);
 }

@@ -2,6 +2,7 @@
 #include "GameState.h"
 
 int luaAddPolySprite(lua_State*);
+int addStringSprite(lua_State*);
 GameState * luaInterface; 
 
 LuaInterface::LuaInterface(const char * path, GameState * _interface){
@@ -56,7 +57,7 @@ void LuaInterface::luaError(const char * type){
 int luaAddPolySprite(lua_State* l){
 	//takes arguments int index, int x, int y, int width, int height, and optionaly int color
 
-	int index = 0, xpos = 0, ypos = 0, width = 0, height = 0, color = -1;
+	int index = 0, xpos = 0, ypos = 0, width = 0, height = 0, color = 0xff00ff;
 	int argCount = lua_gettop(l);
 
 	if(argCount < 5){	//need at least 5 parameters (index, x, y, width, height)
@@ -85,30 +86,32 @@ int luaAddPolySprite(lua_State* l){
 	return 0;
 }
 
-int LuaInterface::addStringSprite(lua_State* l){
+int addStringSprite(lua_State* l){
 	//takes parameters int index, int x, int y, and optionaly string txt, int color
 
 	std::string text = "NULL";
-	int index, xpos, ypos, color = -1;
+	int index, xpos, ypos, color = 0xff00ff, size = 128;
 	int paramCount = lua_gettop(l);
 	
-	if(paramCount < 3){
+	if(paramCount < 4){
 		printf("error: too few arguments");
 		return 0;
-	}else if(paramCount > 5){
+	}else if(paramCount > 6){
 		printf("caution: too many arguments");
 	}
 
 	index = lua_tonumber(l, 1);
 	xpos = lua_tonumber(l, 2);
 	ypos = lua_tonumber(l, 3);
-	text = lua_tostring(l, 4);
-	if(paramCount > 4){
-		color = lua_tonumber(l, 5);
+	size = lua_tonumber(l, 4);
+	text = lua_tostring(l, 5);
+	if(paramCount > 5){
+		color = lua_tonumber(l, 6);
 	}
 
 
 	printf("params: %d %d %d %s %d\n", index, xpos, ypos, text.c_str(), color);
+	luaInterface->addStringSprite(index, xpos, ypos, size, text, color);
 
 	return 0;
 }
