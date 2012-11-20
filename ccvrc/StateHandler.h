@@ -26,7 +26,7 @@ public:
 	void update(double delta);
 
 	//get functions used by game states
-	sf::Texture* getTexture(int index);
+	sf::Texture* getTexture(std::string src);
 
 	int* getWindowWidth(void){
 		return width;

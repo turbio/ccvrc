@@ -15,7 +15,7 @@ GuiTitleScreen::GuiTitleScreen(StateHandler* handler) : GameState("lua/main_menu
 	addSprite(0, titleScreenBg);
 
 	logo = new GuiObject("logo");
-	logo->setTexture(*stateHandler->getTexture(1));
+	logo->setTexture(*stateHandler->getTexture("nope"));
 	logo->setPosition((*stateHandler->getWindowWidth() / 2) - (logo->getTexture()->getSize().x / 2), 
 		(*stateHandler->getWindowHeight() / 2) - (logo->getTexture()->getSize().y / 2));
 	addSprite(0, logo);

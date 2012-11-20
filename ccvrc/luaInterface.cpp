@@ -3,6 +3,8 @@
 
 int luaAddPolySprite(lua_State*);
 int addStringSprite(lua_State*);
+int addSprite(lua_State*);
+
 GameState * luaInterface; 
 
 LuaInterface::LuaInterface(const char * path, GameState * _interface){
@@ -116,6 +118,6 @@ int addStringSprite(lua_State* l){
 	return 0;
 }
 
-int LuaInterface::addSprite(lua_State* l){
+int addSprite(lua_State* l){
 	return 0;
 }

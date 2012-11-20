@@ -23,7 +23,6 @@ public:
 	}
 
 private:
-	static int addSprite(lua_State*);
 	/*virtual int getPropties(lua_State*);
 	virtual int setPropties(lua_State*);
 	virtual int interpolate(lua_State*);

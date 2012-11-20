@@ -15,7 +15,6 @@ public:
 	~GameState(void);
 	virtual void update(double delta_time);
 	virtual void callState(void);
-	void addSprite(int index, sf::Drawable*);
 	std::vector<std::vector<sf::Drawable*>>* getSpriteList(void){
 		return &sprites;
 	};
@@ -23,6 +22,8 @@ public:
 	void addPolySprite(int index, int x_position, int y_postion,
 		int width, int height, int color);
 	void addStringSprite(int index, int x, int y, int size, std::string text, int color);
+	void addSprite(int index, sf::Drawable*);
+	void addSprite(int index, int x, int y, std::string tex, int scaleX, int scaleY);
 protected:
 	StateHandler* stateHandler;
 	LuaInterface* luaInterface;

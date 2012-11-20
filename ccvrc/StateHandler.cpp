@@ -67,6 +67,6 @@ void StateHandler::loaded(){
 }
 
 //get functions for states:
-sf::Texture* StateHandler::getTexture(int index){
-	return logicHandler->getTexture(index);
+sf::Texture* StateHandler::getTexture(std::string src){
+	return logicHandler->getTexture(src);
 }
