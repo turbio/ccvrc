@@ -10,7 +10,7 @@ float speed = 0.0f;
 
 GuiTitleScreen::GuiTitleScreen(StateHandler* handler) : GameState("lua/main_menu.lua", handler){
 	titleScreenBg = new GuiObject("title screen bg");
-	titleScreenBg->setTexture(*stateHandler->getTexture(0));
+	titleScreenBg->setTexture(*stateHandler->getTexture(""));
 	titleScreenBg->setPosition(0, 0);
 	addSprite(0, titleScreenBg);
 

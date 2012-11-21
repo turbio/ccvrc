@@ -86,7 +86,11 @@ void LogicHandler::handleEvent(sf::Event evt){
 }
 
 sf::Texture* LogicHandler::getTexture(std::string index){
-	return textureList[index];
+	if(textureList.count(index) > 0){
+		return textureList[index];
+	}else{
+		return textureList["null_img.png"];
+	}
 }
 
 bool LogicHandler::loadRes(std::string dir){

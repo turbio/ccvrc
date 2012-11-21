@@ -20,7 +20,7 @@ MatchSetup::MatchSetup(StateHandler* handler) : GameState("match_setup", handler
 		0, -leftPane.getTexture()->getSize().x, leftPane.getTexture()->getSize().y));
 	//sprites[0].push_back(&leftPane);
 
-	background.setTexture(*stateHandler->getTexture(0));
+	background.setTexture(*stateHandler->getTexture(""));
 	//sprites[0].push_back(&background);
 
 	centaIcon.setTexture(*stateHandler->getTexture("nope"));
