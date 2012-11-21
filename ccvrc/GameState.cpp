@@ -30,6 +30,14 @@ void GameState::addSprite(int index, sf::Drawable* spr){
 	sprites.at(index).push_back(spr);
 }
 
+void GameState::addSprite(int index, int xpos, int ypos, std::string src, int width, int height){
+	sf::Sprite * sprite = new sf::Sprite();
+	sprite->setPosition(xpos, ypos);
+	sprite->setTexture(*stateHandler->getTexture(src));
+	sprite->scale((float)width / sprite->getTexture()->getSize().x, (float)height /  sprite->getTexture()->getSize().y);
+	addSprite(index, sprite);
+}
+
 void GameState::addPolySprite(int index, int x, int y, int w, int h, int color){
 
 	//printf("\npoly added info: %d %d %d %d %d %d \n", index, x, y, w, h, color);

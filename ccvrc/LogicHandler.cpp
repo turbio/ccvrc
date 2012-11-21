@@ -85,13 +85,16 @@ void LogicHandler::handleEvent(sf::Event evt){
 	}
 }
 
-sf::Texture* LogicHandler::getTexture(int index){
-	return textureList.at(index);
+sf::Texture* LogicHandler::getTexture(std::string index){
+	if(textureList.count(index) > 0){
+		return textureList[index];
+	}else{
+		return textureList["null_img.png"];
+	}
 }
 
 bool LogicHandler::loadRes(std::string dir){
 	std::string line;
-	std::vector<sf::Texture*> textures;
 
 	std::ifstream file(dir + "res.txt");
 
@@ -125,8 +128,8 @@ bool LogicHandler::loadRes(std::string dir){
 						goto skip;
 					}
 
-					textures.push_back(tex);
-					std::cout << " | " << textures.size() - 1 << " | ";
+					textureList[line] = tex;
+					std::cout << " | index:" << line << ": | ";
 					std::cout << "+";
 				}else if(line.substr(line.length() - 3, 3) == "ogg"){
 					sf::SoundBuffer *buffer;
@@ -161,6 +164,5 @@ bool LogicHandler::loadRes(std::string dir){
 		return false;
 	}
 
-	textureList = textures;
 	return true;
 }

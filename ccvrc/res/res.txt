@@ -1,3 +1,6 @@
+#null image error image
+null_img.png
+
 #images
 main_menu_bg.png
 tmp_centa.png

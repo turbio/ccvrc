@@ -4,6 +4,8 @@
 int getProp(lua_State*);
 int luaAddPolySprite(lua_State*);
 int addStringSprite(lua_State*);
+int addSprite(lua_State*);
+
 GameState * luaInterface; 
 
 LuaInterface::LuaInterface(const char * path, GameState * _interface){
@@ -117,6 +119,7 @@ int addStringSprite(lua_State* l){
 	return 0;
 }
 
+
 int getProp(lua_State* l){
 	int layer = 0, index = 0;
 	std::string target, prop;
@@ -124,6 +127,31 @@ int getProp(lua_State* l){
 
 }
 
-int LuaInterface::addSprite(lua_State* l){
+int addSprite(lua_State* l){
+	int index = 0, xPos = 0, yPos = 0, width = 1, height = 1;
+	std::string texture = "null";
+
+	switch (lua_gettop(l)){
+	case 6:{
+		height = lua_tonumber(l, 6);
+			}
+	case 5:{
+		width = lua_tonumber(l, 5);
+			}
+	case 4:{
+		texture = lua_tostring(l, 4);
+			}
+	case 3:{
+		yPos = lua_tonumber(l, 3);
+		   }
+	case 2:{
+		xPos = lua_tonumber(l, 2);
+		   }
+	case 1:{
+		index = lua_tonumber(l, 1);
+		   }
+	}
+
+	luaInterface->addSprite(index, xPos, yPos, texture, width, height);
 	return 0;
 }
