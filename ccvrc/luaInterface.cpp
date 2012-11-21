@@ -1,6 +1,7 @@
 #include "LuaInterface.h"
 #include "GameState.h"
 
+int getProp(lua_State*);
 int luaAddPolySprite(lua_State*);
 int addStringSprite(lua_State*);
 GameState * luaInterface; 
@@ -114,6 +115,13 @@ int addStringSprite(lua_State* l){
 	luaInterface->addStringSprite(index, xpos, ypos, size, text, color);
 
 	return 0;
+}
+
+int getProp(lua_State* l){
+	int layer = 0, index = 0;
+	std::string target, prop;
+
+
 }
 
 int LuaInterface::addSprite(lua_State* l){
