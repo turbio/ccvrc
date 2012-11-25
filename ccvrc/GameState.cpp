@@ -40,6 +40,8 @@ void GameState::addSprite(int index, int xpos, int ypos, std::string src, int wi
 		sprite->scale((float)width / sprite->getTexture()->getSize().x, 1);
 	}else if(height != 0 && width == 0){
 		sprite->scale(1, (float)height /  sprite->getTexture()->getSize().y);
+	}else if(width == 0 && height == 0){
+		sprite->scale(1, 1);
 	}else{
 		sprite->scale((float)width / sprite->getTexture()->getSize().x, (float)height /  sprite->getTexture()->getSize().y);
 	}
