@@ -32,9 +32,18 @@ void GameState::addSprite(int index, sf::Drawable* spr){
 
 void GameState::addSprite(int index, int xpos, int ypos, std::string src, int width, int height){
 	sf::Sprite * sprite = new sf::Sprite();
+
 	sprite->setPosition(xpos, ypos);
 	sprite->setTexture(*stateHandler->getTexture(src));
-	sprite->scale((float)width / sprite->getTexture()->getSize().x, (float)height /  sprite->getTexture()->getSize().y);
+	
+	if(width != 0 && height == 0){
+		sprite->scale((float)width / sprite->getTexture()->getSize().x, 1);
+	}else if(height != 0 && width == 0){
+		sprite->scale(1, (float)height /  sprite->getTexture()->getSize().y);
+	}else{
+		sprite->scale((float)width / sprite->getTexture()->getSize().x, (float)height /  sprite->getTexture()->getSize().y);
+	}
+
 	addSprite(index, sprite);
 }
 

@@ -1,6 +1,7 @@
 --addPolySprite(1, 0, 0, 100, 100, 0xc0c0c0);
 --addPolySprite(2, -3, -3, 100, 100, 0xcc0000);
-addSprite(5, 20, 20, "tmp_rus.png", 640, 10);
+addSprite(5, 20, 20, "tmp_rus.png", 0, 0);
+addSprite(5, 601, 20, "tmp_cen.png", -601, 600);
 --addPolySprite
 
 --addStringSprite(1, 2, 3, 4, 5);
