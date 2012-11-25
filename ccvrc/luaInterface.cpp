@@ -124,7 +124,7 @@ int getProp(lua_State* l){
 	int layer = 0, index = 0;
 	std::string target, prop;
 
-
+	return 0;
 }
 
 int addSprite(lua_State* l){
