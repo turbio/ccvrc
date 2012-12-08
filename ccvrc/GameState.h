@@ -19,8 +19,7 @@ public:
 		return &sprites;
 	};
 
-	void addPolySprite(int index, int x_position, int y_postion,
-		int width, int height, int color);
+	void addPolySprite(int index, int color, int length, int * vertDat);
 	void addStringSprite(int index, int x, int y, int size, std::string text, int color);
 	void addSprite(int index, sf::Drawable*);
 	void addSprite(int index, int x, int y, std::string tex, int w, int h);

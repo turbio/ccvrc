@@ -60,31 +60,22 @@ void LuaInterface::luaError(const char * type){
 int luaAddPolySprite(lua_State* l){
 	//takes arguments int index, int x, int y, int width, int height, and optionaly int color
 
-	int index = 0, xpos = 0, ypos = 0, width = 0, height = 0, color = 0xff00ff;
+	int index = 0, color = 0xff00ff;
 	int argCount = lua_gettop(l);
 
-	if(argCount < 5){	//need at least 5 parameters (index, x, y, width, height)
-		//error to few arguments
-		printf("error: too few arguments\n");
-		return 0;
-	}else if(argCount > 6){
-		//error to many arguments
-		printf("caution: too many arguments\n");
-	}
-
 	index = lua_tonumber(l, 1);	//get index (1st param)
-	xpos = lua_tonumber(l, 2);	//get x position (2nd param)
-	ypos = lua_tonumber(l, 3);	//get y position (3rd param)
-	width = lua_tonumber(l, 4);	//get width of shape 4th
-	height = lua_tonumber(l, 5);	//get height of shape
-	if(argCount >= 6){
-		color = lua_tonumber(l, 6);
-	}
+	color = lua_tonumber(l, 2);
 
 	//std::printf("\ninfo: %d %d %d %d %d %d\n", index, xpos, ypos,
 	//	width, height, color);
 
-	luaInterface->addPolySprite(index, xpos, ypos, width, height, color);
+	int * vertexData = new int[argCount - 2];
+
+	for(int i = 0; i < argCount - 2; i++){
+		vertexData[i] = lua_tonumber(l, i + 3);
+	}
+
+	luaInterface->addPolySprite(index, color, argCount - 2, vertexData);
 
 	return 0;
 }

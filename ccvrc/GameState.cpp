@@ -49,20 +49,21 @@ void GameState::addSprite(int index, int xpos, int ypos, std::string src, int wi
 	addSprite(index, sprite);
 }
 
-void GameState::addPolySprite(int index, int x, int y, int w, int h, int color){
+void GameState::addPolySprite(int index, int color, int length, int * vertexData){
 
-	//printf("\npoly added info: %d %d %d %d %d %d \n", index, x, y, w, h, color);
 	sf::ConvexShape * poly = new sf::ConvexShape();
 
-	poly->setPointCount(4);
-	poly->setPoint(0, sf::Vector2f(x, y));
-	poly->setPoint(1, sf::Vector2f(x + w, y));
-	poly->setPoint(2, sf::Vector2f(x + w, y + h));
-	poly->setPoint(3, sf::Vector2f(x, y + h));
+	poly->setPointCount(length / 2);
+	//x y | x y | x y
+	//0 1 | 2 3 | 4 5
+	for(int i = 0; i < length; i += 2){
+		poly->setPoint(((i + 2) / 2) - 1, sf::Vector2f(vertexData[i], vertexData[1 + i]));
+	}
+
 	int r = ((color / 256) / 256) % 256;
 	int g = (color / 256) % 256;
 	int b = color % 256;
-	poly->setFillColor(sf::Color(r, g, b));
+	poly->setFillColor(sf::Color(255, 0, 255));
 
 	addSprite(index, poly);
 }
