@@ -11,7 +11,7 @@ class StateHandler;
 class GameState{
 
 public:
-	GameState(const char * lua_path, StateHandler* game_state_handler_reference);
+	GameState(const char * lua_path, StateHandler* game_state_handler_reference, int * widht, int * height);
 	~GameState(void);
 	virtual void update(double delta_time);
 	virtual void callState(void);
@@ -23,15 +23,12 @@ public:
 	void addStringSprite(int index, int x, int y, int size, std::string text, int color);
 	void addSprite(int index, sf::Drawable*);
 	void addSprite(int index, int x, int y, std::string tex, int w, int h);
+	std::string getProp(int target, std::string type);
 protected:
 	StateHandler* stateHandler;
 	LuaInterface* luaInterface;
 
-	//std::vector<GuiObject*> guiList;
-	//std::vector<sf::Drawable*> fgList;
-	//std::vector<sf::Drawable*> mgList;
-	//std::vector<sf::Drawable*> bgList;
-
 	std::vector<std::vector<sf::Drawable*>> sprites;
 
+	int * width, * height;
 };

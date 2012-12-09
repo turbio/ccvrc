@@ -1,13 +1,15 @@
 #include "GameState.h"
 #include "StateHandler.h"
 
-GameState::GameState(const char * _path, StateHandler* _stateHandler){
+GameState::GameState(const char * _path, StateHandler* _stateHandler, int * w, int * h){
 	stateHandler = _stateHandler;
 	luaInterface = new LuaInterface(_path, this);
+	width = w;
+	height = h;
 }
 
 GameState::~GameState(void){
-	//getGuiList()->clear();
+
 }
 
 void GameState::update(double delta){
@@ -16,6 +18,18 @@ void GameState::update(double delta){
 
 void GameState::callState(void){
 
+}
+
+std::string GameState::getProp(int target, std::string type){
+	if(target < 0){
+		if(type == "width"){
+			//return std::to_string(*width);
+		}
+	}else{
+		
+	}
+
+	return "err";
 }
 
 void GameState::addSprite(int index, sf::Drawable* spr){
@@ -49,13 +63,14 @@ void GameState::addSprite(int index, int xpos, int ypos, std::string src, int wi
 	addSprite(index, sprite);
 }
 
+
+
 void GameState::addPolySprite(int index, int color, int length, int * vertexData){
 
 	sf::ConvexShape * poly = new sf::ConvexShape();
 
 	poly->setPointCount(length / 2);
-	//x y | x y | x y
-	//0 1 | 2 3 | 4 5
+
 	for(int i = 0; i < length; i += 2){
 		poly->setPoint(((i + 2) / 2) - 1, sf::Vector2f(vertexData[i], vertexData[1 + i]));
 	}

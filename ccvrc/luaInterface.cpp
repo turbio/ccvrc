@@ -17,6 +17,7 @@ LuaInterface::LuaInterface(const char * path, GameState * _interface){
 	lua_register(luaState, "addPolySprite", luaAddPolySprite);
 	lua_register(luaState, "addStringSprite", addStringSprite);
 	lua_register(luaState, "addSprite", addSprite);
+	lua_register(luaState, "getProp", getProp);
 
 	luaL_dofile(luaState, path);
 }
@@ -37,11 +38,11 @@ bool LuaInterface::luaInit(void){
 	return status;
 }
 
-void LuaInterface::luaEvent(int target, const char * type){
+void LuaInterface::luaEvent(std::string target, std::string type){
 	lua_getglobal(luaState, "event");
 
-	lua_pushnumber(luaState, target);
-	lua_pushstring(luaState, type);
+	lua_pushstring(luaState, target.c_str());
+	lua_pushstring(luaState, type.c_str());
 
 	lua_call(luaState, 2, 0);
 	lua_pop(luaState, 1);
@@ -112,10 +113,17 @@ int addStringSprite(lua_State* l){
 
 
 int getProp(lua_State* l){
-	int layer = 0, index = 0;
-	std::string target, prop;
+	std::string type, prop;
+	int target;
 
-	return 0;
+	target = lua_tonumber(l, 1);
+	type = lua_tostring(l, 2);
+
+	prop = luaInterface->getProp(target, type);
+
+	lua_pushstring(l, prop.c_str());
+
+	return 1;
 }
 
 int addSprite(lua_State* l){
