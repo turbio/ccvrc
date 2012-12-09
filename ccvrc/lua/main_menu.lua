@@ -1,12 +1,10 @@
---addPolySprite(1, 0, 0, 100, 100, 0xc0c0c0);
---addPolySprite(2, -3, -3, 100, 100, 0xcc0000);
---addSprite(0, 20, 20, "tmp_cen.png", 0, 0);
---addStringSprite(0, 100, 100, 75, "testing \n new line", 0x0000ff);
-addPolySprite(0, 0xff00ff, 0, 0, 100, 0, 100, 100);
---addSprite(1, 601, 20, "tmp_cen.png", -601, 600); addPolySprite
+--addSprite(index, x, y, "src", width, height);
+--addStringSprite(index, x, y, size, "string", color);
+--addPolySprite(index, color, x1, y1, x2, y2, x2, y2);
 
---addStringSprite(1, 2, 3, 4, 5);
---addPolySprite(2, 10, 100, 200, 200, 0xff0000);
+addSprite(0, 0, 0, "main_menu_bg.png", 0, 0);
+addSprite(0, 123, 123, "logo.png", 0, 0);
+addStringSprite(0, 123, 123, 64, "click to play", 0xfeffff);
 
 function init()
 
