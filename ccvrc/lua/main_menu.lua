@@ -4,7 +4,7 @@
 
 addSprite(0, 0, 0, "main_menu_bg.png", 0, 0);
 addSprite(0, 123, 123, "logo.png", 0, 0);
-addStringSprite(0, 123, 123, 64, "click to play", 0xfeffff);
+addStringSprite(0, 123, 123, 64, getProp(-1, "width"), 0xfeffff);
 
 function init()
 

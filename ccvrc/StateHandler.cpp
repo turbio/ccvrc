@@ -1,9 +1,10 @@
 #include "StateHandler.h"
 #include "LogicHandler.h"
 
-StateHandler::StateHandler(int* w, int* h, LogicHandler* _handler){
-	width = w;
-	height = h;
+StateHandler::StateHandler(int * w, int * h, LogicHandler * _handler){
+	width = *w;
+	height = *h;
+
 	logicHandler = _handler;
 
 	loadfont = new sf::Font();
@@ -46,11 +47,11 @@ void StateHandler::loading(sf::RenderWindow *window, std::string message){
 	
 	window->clear(sf::Color(20, 180, 255));
 
-	text.setPosition(text.getCharacterSize() + 5, 5 + (*height / 2));
+	text.setPosition(text.getCharacterSize() + 5, 5 + (height / 2));
 	text.setColor(sf::Color(0, 130, 205));
 	window->draw(text);
 
-	text.setPosition(text.getCharacterSize(), *height / 2);
+	text.setPosition(text.getCharacterSize(), height / 2);
 	text.setColor(sf::Color().Black);
 	window->draw(text);
 

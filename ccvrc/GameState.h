@@ -11,7 +11,7 @@ class StateHandler;
 class GameState{
 
 public:
-	GameState(const char * lua_path, StateHandler* game_state_handler_reference, int * widht, int * height);
+	GameState(std::string lua_path, StateHandler* game_state_handler_reference);
 	~GameState(void);
 	virtual void update(double delta_time);
 	virtual void callState(void);
@@ -30,5 +30,5 @@ protected:
 
 	std::vector<std::vector<sf::Drawable*>> sprites;
 
-	int * width, * height;
+	int width, height;
 };

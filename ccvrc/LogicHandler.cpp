@@ -1,7 +1,5 @@
 #include "LogicHandler.h"
 
-#define WIDTH 800	//window default width
-#define HEIGHT 600	//window	default height
 #define TITLE "Centa Chicken Vs. Russian Chicken"
 
 //CONSTRUCTOR
@@ -9,11 +7,11 @@ LogicHandler::LogicHandler(void){
 	titleScreen = true;
 	elapsedTime = 1;
 
-	width = WIDTH;
-	height = HEIGHT;
+	width = 800;
+	height = 600;
 	stateHandler = new StateHandler(&width, &height, this);
 
-	window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), TITLE);
+	window = new sf::RenderWindow(sf::VideoMode(width, height), TITLE);
 
 	stateHandler->loading(window);
 	loadRes("res/");

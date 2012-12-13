@@ -1,11 +1,12 @@
 #include "GameState.h"
 #include "StateHandler.h"
 
-GameState::GameState(const char * _path, StateHandler* _stateHandler, int * w, int * h){
+GameState::GameState(std::string _path, StateHandler* _stateHandler){
 	stateHandler = _stateHandler;
-	luaInterface = new LuaInterface(_path, this);
-	width = w;
-	height = h;
+	luaInterface = new LuaInterface(_path.c_str(), this);
+
+	width = 800;
+	height = 600;
 }
 
 GameState::~GameState(void){
@@ -23,10 +24,16 @@ void GameState::callState(void){
 std::string GameState::getProp(int target, std::string type){
 	if(target < 0){
 		if(type == "width"){
-			//return std::to_string(*width);
+			return std::to_string((long long)width);    //TODO FIX THIS NOAW;
+		}else if(type == "height"){
+			return std::to_string((long long)height);    //TODO FIIIXIXIX THISS TOOOO SFSA+ FSEGE
 		}
 	}else{
-		
+		if(type == "width"){
+			return 0;
+		}else if(type == "height"){
+			return 0;
+		}
 	}
 
 	return "err";

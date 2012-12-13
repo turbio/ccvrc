@@ -8,7 +8,7 @@ sf::Text * test;
 bool transition = false;
 float speed = 0.0f;
 
-GuiTitleScreen::GuiTitleScreen(StateHandler* handler) : GameState("lua/main_menu.lua", handler, handler->getWindowWidth(), handler->getWindowHeight()){
+GuiTitleScreen::GuiTitleScreen(StateHandler* handler) : GameState("lua/main_menu.lua", handler){
 	titleScreenBg = new GuiObject("title screen bg");
 	titleScreenBg->setTexture(*stateHandler->getTexture(""));
 	titleScreenBg->setPosition(0, 0);

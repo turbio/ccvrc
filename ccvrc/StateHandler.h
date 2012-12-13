@@ -29,10 +29,10 @@ public:
 	sf::Texture* getTexture(std::string src);
 
 	int* getWindowWidth(void){
-		return width;
+		return &width;
 	}
 	int* getWindowHeight(void){
-		return height;
+		return &height;
 	}
 private:
 	std::vector<GameState*> states;
@@ -41,7 +41,7 @@ private:
 	LogicHandler* logicHandler;
 
 	bool gameLoaded;
-	int *width, *height;
+	int width, height;
 
 	sf::Font * loadfont;
 };
