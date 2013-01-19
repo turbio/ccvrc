@@ -1,7 +1,5 @@
 #include "LogicHandler.h"
 
-#define WIDTH 800	//window default width
-#define HEIGHT 600	//window	default height
 #define TITLE "Centa Chicken Vs. Russian Chicken"
 
 //CONSTRUCTOR
@@ -9,11 +7,11 @@ LogicHandler::LogicHandler(void){
 	titleScreen = true;
 	elapsedTime = 1;
 
-	width = WIDTH;
-	height = HEIGHT;
+	width = 800;
+	height = 600;
 	stateHandler = new StateHandler(&width, &height, this);
 
-	window = new sf::RenderWindow(sf::VideoMode(WIDTH, HEIGHT), TITLE);
+	window = new sf::RenderWindow(sf::VideoMode(width, height), TITLE);
 
 	stateHandler->loading(window);
 	loadRes("res/");
@@ -46,14 +44,11 @@ void LogicHandler::run(void){
         }
 
 		LogicHandler::update(deltaTime);
-		if(clock.getElapsedTime().asMilliseconds() % 100 == 0){
-			LogicHandler::render();
-		}
+		LogicHandler::render();
+
 		endTime = clock.getElapsedTime().asMicroseconds();
 
 		deltaTime = endTime - startTime;
-
-		std::cout << ":> delta: " << deltaTime << "\n"; 
     }
 }
 
@@ -61,17 +56,10 @@ void LogicHandler::render(void){
 	window->clear(sf::Color(20, 180, 255));
 
 	if(stateHandler->getCurrentState() != NULL){
-		for(int i = 0; i < stateHandler->getCurrentState()->getbgList()->size(); i++){
-			window->draw(*stateHandler->getCurrentState()->getbgList()->at(i));
-		}
-		for(int i = 0; i < stateHandler->getCurrentState()->getmgList()->size(); i++){
-			window->draw(*stateHandler->getCurrentState()->getmgList()->at(i));
-		}
-		for(int i = 0; i < stateHandler->getCurrentState()->getfgList()->size(); i++){
-			window->draw(*stateHandler->getCurrentState()->getfgList()->at(i));
-		}
-		for(int i = 0; i < stateHandler->getCurrentState()->getGuiList()->size(); i++){
-			window->draw(*stateHandler->getCurrentState()->getGuiList()->at(i));
+		for(int list = 0; list < stateHandler->getCurrentState()->getSpriteList()->size(); list++){
+			for(int sprite = 0; sprite < stateHandler->getCurrentState()->getSpriteList()->at(list).size(); sprite++){
+				window->draw(*stateHandler->getCurrentState()->getSpriteList()->at(list).at(sprite));
+			}
 		}
 	}
 
@@ -95,13 +83,16 @@ void LogicHandler::handleEvent(sf::Event evt){
 	}
 }
 
-sf::Texture* LogicHandler::getTexture(int index){
-	return textureList.at(index);
+sf::Texture* LogicHandler::getTexture(std::string index){
+	if(textureList.count(index) > 0){
+		return textureList[index];
+	}else{
+		return textureList["null_img.png"];
+	}
 }
 
 bool LogicHandler::loadRes(std::string dir){
 	std::string line;
-	std::vector<sf::Texture*> textures;
 
 	std::ifstream file(dir + "res.txt");
 
@@ -135,8 +126,8 @@ bool LogicHandler::loadRes(std::string dir){
 						goto skip;
 					}
 
-					textures.push_back(tex);
-					std::cout << " | " << textures.size() - 1 << " | ";
+					textureList[line] = tex;
+					std::cout << " | index:" << line << ": | ";
 					std::cout << "+";
 				}else if(line.substr(line.length() - 3, 3) == "ogg"){
 					sf::SoundBuffer *buffer;
@@ -150,7 +141,7 @@ bool LogicHandler::loadRes(std::string dir){
 
 					sf::Sound *player = new sf::Sound();
 					player->setBuffer(*buffer);
-					player->play();
+					//player->play();
 					player->setLoop(true);
 
 					std::cout << "+";
@@ -166,10 +157,10 @@ bool LogicHandler::loadRes(std::string dir){
 		for(int i = 0; i < 53 + dir.length(); i++){
 			std::cout << ":";
 		}
+		std::cout << "\n";
 	}else{
 		return false;
 	}
 
-	textureList = textures;
 	return true;
 }

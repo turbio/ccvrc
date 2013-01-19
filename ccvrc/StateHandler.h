@@ -20,20 +20,19 @@ public:
 	void loading(sf::RenderWindow *window, std::string text = "Loading...");
 	void loaded();
 	void setState(int index_of_state);
-	void setState(std::string statename);
-	sf::Font getFont(void);
+	sf::Font* getFont(void);
 	GameState* getCurrentState(void);
 
 	void update(double delta);
 
 	//get functions used by game states
-	sf::Texture* getTexture(int index);
+	sf::Texture* getTexture(std::string src);
 
 	int* getWindowWidth(void){
-		return width;
+		return &width;
 	}
 	int* getWindowHeight(void){
-		return height;
+		return &height;
 	}
 private:
 	std::vector<GameState*> states;
@@ -42,8 +41,8 @@ private:
 	LogicHandler* logicHandler;
 
 	bool gameLoaded;
-	int *width, *height;
+	int width, height;
 
-	sf::Font loadfont;
+	sf::Font * loadfont;
 };
 

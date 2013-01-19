@@ -12,3 +12,6 @@ lua-src/
 *.opensdf
 *.suo
 *.db
+*.sublime-project
+*.sublime-workspace
+*.exe

@@ -18,7 +18,7 @@ class LogicHandler{
 public:
 	LogicHandler(void);	//CONSTRUCTOR
 	~LogicHandler(void);	//DESTRUCTOR
-	sf::Texture* LogicHandler::getTexture(int index);
+	sf::Texture* LogicHandler::getTexture(std::string index);
 	void run(void);	//main game loop / lets get this party started
 
 	struct texRes{
@@ -33,7 +33,8 @@ private:
 	void handleEvent(sf::Event theEventToBeHandled);	//handles any and all events
 	bool loadRes(std::string directory);
 	sf::RenderWindow *window;	//the main window (probobaly the only)
-	std::vector<sf::Texture*> textureList;	//list of all textures currently loade
+	//std::vector<sf::Texture*> textureList;	//list of all textures currently loade
+	std::map<std::string, sf::Texture*> textureList;
 
 	bool titleScreen;	//if the game is at the title screen
 	double elapsedTime;	//total time elapsed
