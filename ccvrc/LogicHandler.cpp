@@ -57,9 +57,7 @@ void LogicHandler::render(void){
 
 	if(stateHandler->getCurrentState() != NULL){
 		for(int list = 0; list < stateHandler->getCurrentState()->getSpriteList()->size(); list++){
-			for(int sprite = 0; sprite < stateHandler->getCurrentState()->getSpriteList()->at(list).size(); sprite++){
-				window->draw(*stateHandler->getCurrentState()->getSpriteList()->at(list).at(sprite));
-			}
+			window->draw(*stateHandler->getCurrentState()->getSpriteList()->at(list)->getDrawObj());
 		}
 	}
 

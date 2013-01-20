@@ -1,10 +1,10 @@
 #include "LuaInterface.h"
 #include "GameState.h"
 
-int getProp(lua_State*);
+int luaGetProp(lua_State*);
 int luaAddPolySprite(lua_State*);
-int addStringSprite(lua_State*);
-int addSprite(lua_State*);
+int luaAddStringSprite(lua_State*);
+int luaAddSprite(lua_State*);
 
 GameState * luaInterface; 
 
@@ -15,9 +15,9 @@ LuaInterface::LuaInterface(const char * path, GameState * _interface){
 
 	//register functions
 	lua_register(luaState, "addPolySprite", luaAddPolySprite);
-	lua_register(luaState, "addStringSprite", addStringSprite);
-	lua_register(luaState, "addSprite", addSprite);
-	lua_register(luaState, "getProp", getProp);
+	lua_register(luaState, "addStringSprite", luaAddStringSprite);
+	lua_register(luaState, "addSprite", luaAddSprite);
+	lua_register(luaState, "getProp", luaGetProp);
 
 	luaL_dofile(luaState, path);
 }
@@ -81,7 +81,7 @@ int luaAddPolySprite(lua_State* l){
 	return 0;
 }
 
-int addStringSprite(lua_State* l){
+int luaAddStringSprite(lua_State* l){
 	//takes parameters int index, int x, int y, and optionaly string txt, int color
 
 	std::string text = "NULL";
@@ -112,7 +112,7 @@ int addStringSprite(lua_State* l){
 }
 
 
-int getProp(lua_State* l){
+int luaGetProp(lua_State* l){
 	std::string type, prop;
 	int target;
 
@@ -126,8 +126,9 @@ int getProp(lua_State* l){
 	return 1;
 }
 
-int addSprite(lua_State* l){
-	int index = 0, xPos = 0, yPos = 0, width = 1, height = 1;
+int luaAddSprite(lua_State* l){
+	int xPos = 0, yPos = 0, width = 1, height = 1;
+	std::string index = "null";
 	std::string texture = "null";
 
 	switch (lua_gettop(l)){
@@ -147,7 +148,7 @@ int addSprite(lua_State* l){
 		xPos = lua_tonumber(l, 2);
 		   }
 	case 1:{
-		index = lua_tonumber(l, 1);
+		index = lua_tostring(l, 1);
 		   }
 	}
 

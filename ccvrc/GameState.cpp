@@ -39,19 +39,27 @@ std::string GameState::getProp(int target, std::string type){
 	return "err";
 }
 
-void GameState::addSprite(int index, sf::Drawable* spr){
-	printf("adding sprite index: %d list size: %d\n", index, sprites.size());
-	while(sprites.size() <= index){
-		std::vector<sf::Drawable*> vec;
-		sprites.push_back(vec);
-		printf("added new index\n");
+void GameState::addSprite(std::string index, sf::Drawable* draw){
+	printf("adding sprite index: %s list size: %d\n", index, sprites.size());
+	
+	if(index == "null" || index == ""){
+		printf("the sprite did not have a name / index\n");
+		return;
 	}
-	printf("new size: %d\n", sprites.size());
+	for(int i = 0; i < sprites.size(); i++){
+		if(index == sprites.at(i)->getIndex()){
+			printf("a sprite with this name / index already excists\n");
+			return;
+		}
+	}
 
-	sprites.at(index).push_back(spr);
+	Sprite * sprite = new Sprite(index);
+	*sprite = draw;
+
+	sprites.push_back(sprite);
 }
 
-void GameState::addSprite(int index, int xpos, int ypos, std::string src, int width, int height){
+void GameState::addSprite(std::string index, int xpos, int ypos, std::string src, int width, int height){
 	sf::Sprite * sprite = new sf::Sprite();
 
 	sprite->setPosition(xpos, ypos);
@@ -87,7 +95,7 @@ void GameState::addPolySprite(int index, int color, int length, int * vertexData
 	int b = color % 256;
 	poly->setFillColor(sf::Color(255, 0, 255));
 
-	addSprite(index, poly);
+	addSprite("null", poly);
 }
 
 void GameState::addStringSprite(int index, int x, int y, int size, std::string text, int color){
@@ -101,5 +109,5 @@ void GameState::addStringSprite(int index, int x, int y, int size, std::string t
 	spr->setColor(sf::Color(r, g, b));
 	spr->setPosition(x, y);
 
-	addSprite(index, spr);
+	addSprite("null", spr);
 }
