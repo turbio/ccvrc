@@ -20,6 +20,10 @@ public:
 	void loading(sf::RenderWindow *window, std::string text = "Loading...");
 	void loaded();
 	void setState(int index_of_state);
+	void keyPressed(int key);
+	void resetCurrentSate(void){
+		currentState->resetState();
+	}
 	sf::Font* getFont(void);
 	GameState* getCurrentState(void);
 

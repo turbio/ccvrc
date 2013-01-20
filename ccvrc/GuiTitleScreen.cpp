@@ -35,7 +35,7 @@ GuiTitleScreen::~GuiTitleScreen(void){
 void GuiTitleScreen::update(double delta){
 
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-		transition = true;
+		//transition = true;
 	}else if(transition){
 		speed += 0.0005f;
 		logo->move(0, speed);

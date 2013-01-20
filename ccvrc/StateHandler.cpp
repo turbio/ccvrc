@@ -1,6 +1,8 @@
 #include "StateHandler.h"
 #include "LogicHandler.h"
 
+bool autoReset;
+
 StateHandler::StateHandler(int * w, int * h, LogicHandler * _handler){
 	width = *w;
 	height = *h;
@@ -17,7 +19,27 @@ StateHandler::~StateHandler(void){
 }
 
 void StateHandler::update(double delta){
-	currentState->update(delta);
+	if(currentState != NULL){
+		currentState->update(delta);
+	}
+
+	if(autoReset){
+		resetCurrentSate();
+	}
+}
+
+void StateHandler::keyPressed(int key){
+	if(key == sf::Keyboard::R){
+		std::cout << "reseting current state" << std::endl;
+		resetCurrentSate();
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
+			std::cout << "auto reset toggled" << std::endl;
+			if(autoReset)
+				autoReset = false;
+			else
+				autoReset = true;
+		}
+	}
 }
 
 void StateHandler::setState(int index){

@@ -4,6 +4,7 @@
 GameState::GameState(std::string _path, StateHandler* _stateHandler){
 	stateHandler = _stateHandler;
 	luaInterface = new LuaInterface(_path.c_str(), this);
+	luaPath = _path;
 
 	width = 800;
 	height = 600;
@@ -19,6 +20,12 @@ void GameState::update(double delta){
 
 void GameState::callState(void){
 
+}
+
+void GameState::resetState(void){
+	sprites.clear();
+	delete luaInterface;
+	luaInterface = new LuaInterface(luaPath.c_str(), this);
 }
 
 std::string GameState::getProp(int target, std::string type){
@@ -40,8 +47,6 @@ std::string GameState::getProp(int target, std::string type){
 }
 
 void GameState::addSprite(std::string index, sf::Drawable* draw){
-	printf("adding sprite index: %s list size: %d\n", index, sprites.size());
-	
 	if(index == "null" || index == ""){
 		printf("the sprite did not have a name / index\n");
 		return;

@@ -67,17 +67,14 @@ void LogicHandler::render(void){
 void LogicHandler::update(double delta){
 	elapsedTime += (delta * 0.00001);
 
-	if(stateHandler->getCurrentState() != NULL){
-		stateHandler->getCurrentState()->update(delta);
-	}
+	stateHandler->update(delta);
 }
 
 void LogicHandler::handleEvent(sf::Event evt){
 	if (evt.type == sf::Event::Closed){
 		window->close();
-	}else if((evt.type == sf::Event::KeyPressed ||
-		evt.type == sf::Event::MouseButtonPressed) && titleScreen){
-			titleScreen = false;
+	}else if(evt.type == sf::Event::KeyPressed){
+		stateHandler->keyPressed(evt.key.code);
 	}
 }
 

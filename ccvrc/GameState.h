@@ -16,6 +16,7 @@ public:
 	~GameState(void);
 	virtual void update(double delta_time);
 	virtual void callState(void);
+	void resetState(void);
 	std::vector<Sprite*>* getSpriteList(void){
 		return &sprites;
 	};
@@ -32,4 +33,7 @@ protected:
 	std::vector<Sprite*> sprites;
 
 	int width, height;
+
+private:
+	std::string luaPath;
 };
