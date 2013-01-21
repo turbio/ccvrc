@@ -61,8 +61,9 @@ void LuaInterface::luaError(const char * type){
 int luaAddPolySprite(lua_State* l){
 	//takes arguments int index, int x, int y, int width, int height, and optionaly int color
 
-	int index = 0, color = 0xff00ff;
+	int color = 0xff00ff;
 	int argCount = lua_gettop(l);
+	std::string index = "null";
 
 	index = lua_tonumber(l, 1);	//get index (1st param)
 	color = lua_tonumber(l, 2);
@@ -85,8 +86,9 @@ int luaAddStringSprite(lua_State* l){
 	//takes parameters int index, int x, int y, and optionaly string txt, int color
 
 	std::string text = "NULL";
-	int index, xpos, ypos, color = 0xff00ff, size = 128;
+	int xpos, ypos, color = 0xff00ff, size = 128;
 	int paramCount = lua_gettop(l);
+	std::string index = "null";
 	
 	if(paramCount < 4){
 		printf("error: too few arguments");
@@ -95,7 +97,7 @@ int luaAddStringSprite(lua_State* l){
 		printf("caution: too many arguments");
 	}
 
-	index = lua_tonumber(l, 1);
+	index = lua_tostring(l, 1);
 	xpos = lua_tonumber(l, 2);
 	ypos = lua_tonumber(l, 3);
 	size = lua_tonumber(l, 4);
@@ -104,8 +106,6 @@ int luaAddStringSprite(lua_State* l){
 		color = lua_tonumber(l, 6);
 	}
 
-
-	printf("params: %d %d %d %s %d\n", index, xpos, ypos, text.c_str(), color);
 	luaInterface->addStringSprite(index, xpos, ypos, size, text, color);
 
 	return 0;
@@ -113,13 +113,12 @@ int luaAddStringSprite(lua_State* l){
 
 
 int luaGetProp(lua_State* l){
-	std::string type, prop;
-	int target;
+	std::string type, prop, target;
 
-	target = lua_tonumber(l, 1);
+	target = lua_tostring(l, 1);
 	type = lua_tostring(l, 2);
 
-	prop = luaInterface->getProp(target, type);
+	//prop = luaInterface->getProp(target, type);
 
 	lua_pushstring(l, prop.c_str());
 

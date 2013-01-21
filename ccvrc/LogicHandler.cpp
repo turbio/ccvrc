@@ -46,6 +46,10 @@ void LogicHandler::run(void){
 		LogicHandler::update(deltaTime);
 		LogicHandler::render();
 
+		long sleepTime = ((float)1 / (float)60) * 1000;
+
+		sf::sleep(sf::milliseconds(sleepTime));
+
 		endTime = clock.getElapsedTime().asMicroseconds();
 
 		deltaTime = endTime - startTime;

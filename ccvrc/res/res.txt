@@ -9,6 +9,7 @@ match_setup_panel.png
 btns_radio_select.png
 tmp_cen.png
 tmp_rus.png
+centa_full.png
 
 #music
 title.ogg

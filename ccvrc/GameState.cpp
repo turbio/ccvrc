@@ -88,7 +88,7 @@ void GameState::addSprite(std::string index, int xpos, int ypos, std::string src
 
 
 
-void GameState::addPolySprite(int index, int color, int length, int * vertexData){
+void GameState::addPolySprite(std::string index, int color, int length, int * vertexData){
 
 	sf::ConvexShape * poly = new sf::ConvexShape();
 
@@ -103,12 +103,10 @@ void GameState::addPolySprite(int index, int color, int length, int * vertexData
 	int b = color % 256;
 	poly->setFillColor(sf::Color(255, 0, 255));
 
-	addSprite("null", poly);
+	addSprite(index, poly);
 }
 
-void GameState::addStringSprite(int index, int x, int y, int size, std::string text, int color){
-	printf("adding string sprite: index: %d x: %d y: %d size: %d string: %s color: %d\n", index, x, y, size, text.c_str(), color);
-
+void GameState::addStringSprite(std::string index, int x, int y, int size, std::string text, int color){
 	sf::Text * spr = new sf::Text(text, *stateHandler->getFont(), size);
 
 	int r = ((color / 256) / 256) % 256;
@@ -117,5 +115,5 @@ void GameState::addStringSprite(int index, int x, int y, int size, std::string t
 	spr->setColor(sf::Color(r, g, b));
 	spr->setPosition(x, y);
 
-	addSprite("null", spr);
+	addSprite(index, spr);
 }

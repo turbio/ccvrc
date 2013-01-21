@@ -21,8 +21,8 @@ public:
 		return &sprites;
 	};
 
-	void addPolySprite(int index, int color, int length, int * vertDat);
-	void addStringSprite(int index, int x, int y, int size, std::string text, int color);
+	void addPolySprite(std::string index, int color, int length, int * vertDat);
+	void addStringSprite(std::string index, int x, int y, int size, std::string text, int color);
 	void addSprite(std::string, sf::Drawable*);
 	void addSprite(std::string, int x, int y, std::string tex, int w, int h);
 	std::string getProp(int target, std::string type);
