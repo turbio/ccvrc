@@ -10,6 +10,7 @@ btns_radio_select.png
 tmp_cen.png
 tmp_rus.png
 centa_full.png
+russ_final.png
 
 #music
 title.ogg
