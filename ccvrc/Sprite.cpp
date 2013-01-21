@@ -5,5 +5,5 @@ Sprite::Sprite(std::string _index){
 }
 
 Sprite::~Sprite(void){
-
+	delete drawObject;
 }

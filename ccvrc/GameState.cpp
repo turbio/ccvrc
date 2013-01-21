@@ -23,6 +23,9 @@ void GameState::callState(void){
 }
 
 void GameState::resetState(void){
+	for(int i = 0; i < sprites.size(); i++){
+		delete sprites.at(i);
+	}
 	sprites.clear();
 	delete luaInterface;
 	luaInterface = new LuaInterface(luaPath.c_str(), this);
