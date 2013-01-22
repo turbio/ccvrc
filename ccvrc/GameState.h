@@ -23,9 +23,11 @@ public:
 
 	void addPolySprite(std::string index, int color, int length, int * vertDat);
 	void addStringSprite(std::string index, int x, int y, int size, std::string text, int color);
-	void addSprite(std::string, sf::Drawable*);
+	void addSprite(Sprite*);
 	void addSprite(std::string, int x, int y, std::string tex, int w, int h);
+	void interpolateSprite(std::string target = "null", int destinationX = 0, int destinationY = 0, float speed = 1);
 	std::string getProp(int target, std::string type);
+	Sprite* findSprite(std::string);
 protected:
 	StateHandler* stateHandler;
 	LuaInterface* luaInterface;

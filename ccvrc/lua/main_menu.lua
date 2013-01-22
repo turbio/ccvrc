@@ -3,6 +3,7 @@
 --addSprite(index, x, y, "src", width, height);
 --addStringSprite(index, x, y, size, "string", color);
 --addPolySprite(index, color, x1, y1, x2, y2, x2, y2);
+--linearInterpolate(index, destinationX, destinationY, speed);
 
 
 addSprite("bg", 0, 0, "main_menu_bg.png", 0, 0);
@@ -12,7 +13,7 @@ addSprite("title", (800 / 2) - (684 / 2), 50, "logo.png", 0, 0);
 addStringSprite("cts", 250, 450, 64, "Click to Start", 0xfeffff);
 
 function init()
-
+	linearInterpolate("title", 0, 0, 1.1);
 end
 
 function event(target, type)

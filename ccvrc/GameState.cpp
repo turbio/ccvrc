@@ -15,7 +15,9 @@ GameState::~GameState(void){
 }
 
 void GameState::update(double delta){
-
+	for(int i = 0; i < sprites.size(); i++){
+		sprites.at(i)->update(delta);
+	}
 }
 
 void GameState::callState(void){
@@ -49,20 +51,17 @@ std::string GameState::getProp(int target, std::string type){
 	return "err";
 }
 
-void GameState::addSprite(std::string index, sf::Drawable* draw){
-	if(index == "null" || index == ""){
+void GameState::addSprite(Sprite* sprite){
+	if(sprite->getIndex() == "null" || sprite->getIndex() == ""){
 		printf("the sprite did not have a name / index\n");
 		return;
 	}
 	for(int i = 0; i < sprites.size(); i++){
-		if(index == sprites.at(i)->getIndex()){
+		if(sprite->getIndex() == sprites.at(i)->getIndex()){
 			printf("a sprite with this name / index already excists\n");
 			return;
 		}
 	}
-
-	Sprite * sprite = new Sprite(index);
-	*sprite = draw;
 
 	sprites.push_back(sprite);
 }
@@ -70,7 +69,6 @@ void GameState::addSprite(std::string index, sf::Drawable* draw){
 void GameState::addSprite(std::string index, int xpos, int ypos, std::string src, int width, int height){
 	sf::Sprite * sprite = new sf::Sprite();
 
-	sprite->setPosition(xpos, ypos);
 	sprite->setTexture(*stateHandler->getTexture(src));
 	
 	if(width != 0 && height == 0){
@@ -82,8 +80,11 @@ void GameState::addSprite(std::string index, int xpos, int ypos, std::string src
 	}else{
 		sprite->scale((float)width / sprite->getTexture()->getSize().x, (float)height /  sprite->getTexture()->getSize().y);
 	}
+	sprite->setPosition(xpos, ypos);
 
-	addSprite(index, sprite);
+	Sprite * spr = new Sprite(index, sprite);
+
+	addSprite(spr);
 }
 
 
@@ -103,7 +104,9 @@ void GameState::addPolySprite(std::string index, int color, int length, int * ve
 	int b = color % 256;
 	poly->setFillColor(sf::Color(255, 0, 255));
 
-	addSprite(index, poly);
+	Sprite * spr = new Sprite(index, poly);
+
+	addSprite(spr);
 }
 
 void GameState::addStringSprite(std::string index, int x, int y, int size, std::string text, int color){
@@ -115,5 +118,22 @@ void GameState::addStringSprite(std::string index, int x, int y, int size, std::
 	spr->setColor(sf::Color(r, g, b));
 	spr->setPosition(x, y);
 
-	addSprite(index, spr);
+	Sprite * sprite = new Sprite(index, spr);
+
+	addSprite(sprite);
+}
+
+void GameState::interpolateSprite(std::string target, int destX, int destY, float speed){
+	findSprite(target)->setInterpolate(destX, destY, speed);
+}
+
+Sprite* GameState::findSprite(std::string target){
+	for(int i = 0; i < sprites.size(); i++){
+		if(sprites.at(i)->getIndex() == target){
+			return sprites.at(i);
+		}
+	}
+
+	std::cout << "could not find sprite" << std::endl;
+	return NULL;
 }

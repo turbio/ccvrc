@@ -50,6 +50,7 @@ void MatchSetup::callState(void){
 }
 
 void MatchSetup::update(double delta){
+	GameState::update(delta);
 	centaIcon.setPosition(rightPane.getPosition());
 	centaIcon.move(CENTA_POSITION_OFFSET);
 	if(transIn){

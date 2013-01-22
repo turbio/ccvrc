@@ -15,7 +15,7 @@ class LuaInterface{
 public:
 	LuaInterface(const char * path, GameState *);
 	~LuaInterface(void);
-	bool luaInit(void);
+	void luaInit(void);
 	void luaEvent(std::string target, std::string type);
 	void luaError(const char * type);
 	virtual void addPolySprite(int intex, int x, int y, int w, int h, int color){

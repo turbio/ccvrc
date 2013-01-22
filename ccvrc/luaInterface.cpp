@@ -24,22 +24,20 @@ LuaInterface::LuaInterface(const char * path, GameState * _interface){
 	lua_register(luaState, "setProp", luaSetProp);
 
 	luaL_dofile(luaState, path);
+
+	LuaInterface::luaInit();
 }
 
 LuaInterface::~LuaInterface(void){
 	lua_close(luaState);
 }
 
-bool LuaInterface::luaInit(void){
-	bool status;
+void LuaInterface::luaInit(void){
 
 	lua_getglobal(luaState, "init");
 
 	lua_call(luaState, 0, 1);
-	status = lua_toboolean(luaState, -1);
 	lua_pop(luaState, 1);
-
-	return status;
 }
 
 void LuaInterface::luaEvent(std::string target, std::string type){
@@ -160,9 +158,26 @@ int luaAddSprite(lua_State* l){
 }
 
 int luaLinearInterpolate(lua_State* l){
-	std::string target;
-	int destX, destY, speed;
+	std::string target = "null";
+	int destX = 0, destY = 0;
+	float speed = 1.0f;
 
+	switch (lua_gettop(l)){
+	case 4:{
+		speed = lua_tonumber(l, 4);
+		   }
+	case 3:{
+		destY = lua_tonumber(l, 3);
+		   }
+	case 2:{
+		destX = lua_tonumber(l, 2);
+		   }
+	case 1:{
+		target = lua_tostring(l, 1);
+		   }
+	}
+
+	luaInterface->interpolateSprite(target, destX, destY, speed);
 	return 0;
 }
 

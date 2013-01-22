@@ -17,7 +17,7 @@ GuiTitleScreen::~GuiTitleScreen(void){
 }
 
 void GuiTitleScreen::update(double delta){
-
+	GameState::update(delta);
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
 		//transition = true;
 	}else if(transition){
