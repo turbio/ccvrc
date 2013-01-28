@@ -4,6 +4,8 @@
 GameState::GameState(std::string _path, StateHandler* _stateHandler){
 	stateHandler = _stateHandler;
 	luaInterface = new LuaInterface(_path.c_str(), this);
+	luaInterface->luaInit();
+
 	luaPath = _path;
 
 	width = 800;
@@ -12,6 +14,13 @@ GameState::GameState(std::string _path, StateHandler* _stateHandler){
 
 GameState::~GameState(void){
 
+}
+
+void GameState::keyDown(int key){
+	luaInterface->luaEvent("keydown", std::to_string(key));
+}
+void GameState::mouseDown(int btn){
+	luaInterface->luaEvent("mousedown", std::to_string(btn));
 }
 
 void GameState::update(double delta){
@@ -25,16 +34,19 @@ void GameState::callState(void){
 }
 
 void GameState::resetState(void){
+	
 	for(int i = 0; i < sprites.size(); i++){
 		delete sprites.at(i);
 	}
 	sprites.clear();
 	delete luaInterface;
 	luaInterface = new LuaInterface(luaPath.c_str(), this);
+
+	luaInterface->luaInit();
 }
 
-std::string GameState::getProp(int target, std::string type){
-	if(target < 0){
+std::string GameState::getProp(std::string target, std::string type){
+	if(target == "stage" || target == "" || target == "window" || target == "screen"){
 		if(type == "width"){
 			return std::to_string((long long)width);    //TODO FIX THIS NOAW;
 		}else if(type == "height"){
@@ -45,6 +57,11 @@ std::string GameState::getProp(int target, std::string type){
 			return 0;
 		}else if(type == "height"){
 			return 0;
+		}if(type == "xpos" || type == "x"){
+			return std::to_string(findSprite(target)->getX());
+			std::printf("xolo");
+		}if(type == "ypos" || type == "y"){
+			return std::to_string(findSprite(target)->getY());
 		}
 	}
 

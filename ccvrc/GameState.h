@@ -26,8 +26,11 @@ public:
 	void addSprite(Sprite*);
 	void addSprite(std::string, int x, int y, std::string tex, int w, int h);
 	void interpolateSprite(std::string target = "null", int destinationX = 0, int destinationY = 0, float speed = 1);
-	std::string getProp(int target, std::string type);
+	std::string getProp(std::string target, std::string type);
 	Sprite* findSprite(std::string);
+
+	void keyDown(int key);
+	void mouseDown(int btn);
 protected:
 	StateHandler* stateHandler;
 	LuaInterface* luaInterface;

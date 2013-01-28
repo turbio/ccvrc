@@ -38,9 +38,9 @@ void LogicHandler::run(void){
 	while (window->isOpen()){
 		startTime = clock.getElapsedTime().asMicroseconds();
 
-		sf::Event event;
-		while (window->pollEvent(event)){
-			handleEvent(event);
+		sf::Event evt;
+		while (window->pollEvent(evt)){
+			handleEvent(evt);
         }
 
 		LogicHandler::update(deltaTime);
@@ -54,6 +54,16 @@ void LogicHandler::run(void){
 
 		deltaTime = endTime - startTime;
     }
+}
+
+void LogicHandler::handleEvent(sf::Event evt){
+	if(evt.type == sf::Event::Closed){
+		window->close();
+	}else if(evt.type == sf::Event::KeyPressed){
+       stateHandler->keyPressed(evt.key.code);
+	}else if(evt.type == sf::Event::MouseButtonPressed){
+		stateHandler->mousePressed(evt.mouseButton.button);
+	}
 }
 
 void LogicHandler::render(void){
@@ -72,14 +82,6 @@ void LogicHandler::update(double delta){
 	elapsedTime += (delta * 0.00001);
 
 	stateHandler->update(delta);
-}
-
-void LogicHandler::handleEvent(sf::Event evt){
-	if (evt.type == sf::Event::Closed){
-		window->close();
-	}else if(evt.type == sf::Event::KeyPressed){
-		stateHandler->keyPressed(evt.key.code);
-	}
 }
 
 sf::Texture* LogicHandler::getTexture(std::string index){

@@ -24,8 +24,6 @@ LuaInterface::LuaInterface(const char * path, GameState * _interface){
 	lua_register(luaState, "setProp", luaSetProp);
 
 	luaL_dofile(luaState, path);
-
-	LuaInterface::luaInit();
 }
 
 LuaInterface::~LuaInterface(void){
@@ -36,7 +34,7 @@ void LuaInterface::luaInit(void){
 
 	lua_getglobal(luaState, "init");
 
-	lua_call(luaState, 0, 1);
+	lua_call(luaState, 0, 0);
 	lua_pop(luaState, 1);
 }
 
@@ -120,7 +118,7 @@ int luaGetProp(lua_State* l){
 	target = lua_tostring(l, 1);
 	type = lua_tostring(l, 2);
 
-	//prop = luaInterface->getProp(target, type);
+	prop = luaInterface->getProp(target, type);
 
 	lua_pushstring(l, prop.c_str());
 

@@ -24,12 +24,19 @@ public:
 		}
 	}
 
+	float getX(void){
+		return xpos;
+	}float getY(void){
+		return ypos;
+	}
+
 private:
 	sf::Sprite * sprite;
 	sf::Text * text;
 	sf::ConvexShape * poly;
 	bool isSprite, isText, isPoly;
-	std::string index;    //holds the index or name of the object, this makes it easy to recognize, organize and identify especialy in lua
+	std::string index;
+	float xpos, ypos;
 
 	//used for interpolation
 	bool interpolate;

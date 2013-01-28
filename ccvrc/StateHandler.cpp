@@ -1,8 +1,6 @@
 #include "StateHandler.h"
 #include "LogicHandler.h"
 
-bool autoReset;
-
 StateHandler::StateHandler(int * w, int * h, LogicHandler * _handler){
 	width = *w;
 	height = *h;
@@ -22,24 +20,21 @@ void StateHandler::update(double delta){
 	if(currentState != NULL){
 		currentState->update(delta);
 	}
-
-	if(autoReset){
-		resetCurrentSate();
-	}
 }
 
 void StateHandler::keyPressed(int key){
-	if(key == sf::Keyboard::R){
+	if(key == sf::Keyboard::Tilde){
 		std::cout << "reseting current state" << std::endl;
 		resetCurrentSate();
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
-			std::cout << "auto reset toggled" << std::endl;
-			if(autoReset)
-				autoReset = false;
-			else
-				autoReset = true;
-		}
+	}else{
+		currentState->keyDown(key);
 	}
+}
+
+void StateHandler::mousePressed(int btn){
+	currentState->mouseDown(btn);
+
+	//TODO check for mouse touching sprite and send event to lua / gamestate
 }
 
 void StateHandler::setState(int index){
@@ -56,10 +51,7 @@ void StateHandler::setupGui(void){
 	GameState * titleScreen = new GuiTitleScreen(this);
 	currentState = titleScreen;
 
-	GameState * matchSetup = new MatchSetup(this);
-
 	states.push_back(titleScreen);
-	states.push_back(matchSetup);
 }
 
 void StateHandler::loading(sf::RenderWindow *window, std::string message){
