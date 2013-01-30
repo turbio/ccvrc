@@ -26,6 +26,10 @@ void GameState::mouseDown(int btn){
 void GameState::update(double delta){
 	for(int i = 0; i < sprites.size(); i++){
 		sprites.at(i)->update(delta);
+
+		if(sprites.at(i)->checkArrived()){
+			luaInterface->luaEvent(sprites.at(i)->getIndex(), "arrived");
+		}
 	}
 }
 

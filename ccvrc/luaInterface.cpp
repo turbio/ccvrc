@@ -44,8 +44,7 @@ void LuaInterface::luaEvent(std::string target, std::string type){
 	lua_pushstring(luaState, target.c_str());
 	lua_pushstring(luaState, type.c_str());
 
-	lua_call(luaState, 2, 0);
-	lua_pop(luaState, 1);
+	lua_pcall(luaState, 2, 0, 0);
 }
 
 void LuaInterface::luaError(const char * type){

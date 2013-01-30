@@ -3,6 +3,7 @@
 Sprite::Sprite(std::string _index, sf::Sprite * _sprite){
 	index = _index;
 	interpolate = false;
+	hasArrived = false;
 
 	sprite = _sprite;
 	isSprite = true;
@@ -16,6 +17,7 @@ Sprite::Sprite(std::string _index, sf::Sprite * _sprite){
 Sprite::Sprite(std::string _index, sf::Text * _sprite){
 	index = _index;
 	interpolate = false;
+	hasArrived = false;
 
 	text = _sprite;
 	isSprite = false;
@@ -29,6 +31,7 @@ Sprite::Sprite(std::string _index, sf::Text * _sprite){
 Sprite::Sprite(std::string _index, sf::ConvexShape * _sprite){
 	index = _index;
 	interpolate = false;
+	hasArrived = false;
 
 	poly = _sprite;
 	isSprite = false;
@@ -44,6 +47,7 @@ Sprite::~Sprite(void){
 }
 
 void Sprite::setInterpolate(int _destX, int _destY, float _speed){
+	hasArrived = false;
 	destX = _destX;
 	destY = _destY;
 	speed = _speed * .00001f;
@@ -86,7 +90,7 @@ void Sprite::update(double delta){
 		if(progress >= 1){
 			xpos = destX;
 			ypos = destY;
-			progress = 0;
+
 			if(isSprite){
 				sprite->setPosition(destX, destY);
 			}
@@ -96,7 +100,21 @@ void Sprite::update(double delta){
 			if(isPoly){
 				poly->setPosition(destX, destY);
 			}
+
+			progress = 0;
 			interpolate = false;
+
+			hasArrived = true;
 		}
 	}
+}
+
+bool Sprite::checkArrived(void){
+	if(hasArrived && !interpolate && progress == 0){
+
+		hasArrived = false;
+		return true;
+	}
+
+	return false;
 }

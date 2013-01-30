@@ -1,3 +1,5 @@
+//oh gawd this whole class is horible, don't look at it...
+
 #pragma once
 #include <SFML\Graphics.hpp>
 #include <math.h>
@@ -30,6 +32,8 @@ public:
 		return ypos;
 	}
 
+	bool checkArrived(void);
+
 private:
 	sf::Sprite * sprite;
 	sf::Text * text;
@@ -42,4 +46,5 @@ private:
 	bool interpolate;
 	int destX, destY, oldX, oldY;
 	float speed, progress, distance;
+	bool hasArrived;
 };
