@@ -10,7 +10,7 @@ sf::Text * homeTxt, * awayTxt;
 sf::RectangleShape a;
 bool transIn = false;
 
-MatchSetup::MatchSetup(StateHandler* handler) : GameState("match_setup", handler){
+MatchSetup::MatchSetup(StateHandler* handler) : GameState("match_setup", "match_setup", handler){
 	rightPane.setTexture(*stateHandler->getTexture("nope"));
 	rightPane.setPosition((*stateHandler->getWindowWidth()) - rightPane.getTexture()->getSize().x, 0);
 	//sprites[0].push_back(&rightPane);

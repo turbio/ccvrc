@@ -42,6 +42,15 @@ void StateHandler::setState(int index){
 	currentState->callState();
 }
 
+void StateHandler::setState(std::string index){
+	for(int i = 0; i < states.size(); i++){
+		if(states.at(i)->getIndex() == index){
+			//delete currentState;
+
+		}
+	}
+}
+
 GameState* StateHandler::getCurrentState(){
 	return currentState;
 }
@@ -49,9 +58,12 @@ GameState* StateHandler::getCurrentState(){
 void StateHandler::setupGui(void){
 
 	GameState * titleScreen = new GuiTitleScreen(this);
-	currentState = titleScreen;
-
 	states.push_back(titleScreen);
+
+	GameState * matchSetup = new MatchSetup(this);
+	states.push_back(matchSetup);
+
+	currentState = titleScreen;
 }
 
 void StateHandler::loading(sf::RenderWindow *window, std::string message){

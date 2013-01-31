@@ -1,11 +1,11 @@
 #include "GameState.h"
 #include "StateHandler.h"
 
-GameState::GameState(std::string _path, StateHandler* _stateHandler){
+GameState::GameState(std::string name, std::string _path, StateHandler* _stateHandler){
 	stateHandler = _stateHandler;
-	luaInterface = new LuaInterface(_path.c_str(), this);
 	luaInterface->luaInit();
-
+	stateName = name;
+	luaInterface = new LuaInterface(_path.c_str(), this);
 	luaPath = _path;
 
 	width = 800;
@@ -34,7 +34,7 @@ void GameState::update(double delta){
 }
 
 void GameState::callState(void){
-
+	
 }
 
 void GameState::resetState(void){
@@ -146,6 +146,10 @@ void GameState::addStringSprite(std::string index, int x, int y, int size, std::
 
 void GameState::interpolateSprite(std::string target, int destX, int destY, float speed){
 	findSprite(target)->setInterpolate(destX, destY, speed);
+}
+
+void GameState::setState(std::string state){
+
 }
 
 Sprite* GameState::findSprite(std::string target){

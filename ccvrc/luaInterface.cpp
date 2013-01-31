@@ -7,6 +7,7 @@ int luaAddStringSprite(lua_State*);
 int luaAddSprite(lua_State*);
 int luaSetProp(lua_State*);
 int luaLinearInterpolate(lua_State*);
+int luaCallState(lua_State*);
 
 GameState * luaInterface; 
 
@@ -22,6 +23,7 @@ LuaInterface::LuaInterface(const char * path, GameState * _interface){
 	lua_register(luaState, "getProp", luaGetProp);
 	lua_register(luaState, "linearInterpolate", luaLinearInterpolate);
 	lua_register(luaState, "setProp", luaSetProp);
+	lua_register(luaState, "callState", luaCallState);
 
 	luaL_dofile(luaState, path);
 }
@@ -175,6 +177,16 @@ int luaLinearInterpolate(lua_State* l){
 	}
 
 	luaInterface->interpolateSprite(target, destX, destY, speed);
+	return 0;
+}
+
+int luaCallState(lua_State* l){
+	std::string state = "null";
+
+	state = lua_tostring(l, 1);
+
+	luaInterface->setState(state);
+
 	return 0;
 }
 

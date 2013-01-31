@@ -20,6 +20,7 @@ public:
 	void loading(sf::RenderWindow *window, std::string text = "Loading...");
 	void loaded();
 	void setState(int index_of_state);
+	void setState(std::string index);
 
 	void keyPressed(int key);
 	void mousePressed(int btn);
