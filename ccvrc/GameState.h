@@ -16,6 +16,7 @@ public:
 	~GameState(void);
 	virtual void update(double delta_time);
 	virtual void callState(void);
+	virtual void closeState(void);
 	void resetState(void);
 	std::vector<Sprite*>* getSpriteList(void){
 		return &sprites;

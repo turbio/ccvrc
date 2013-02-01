@@ -1,10 +1,8 @@
---require "state";
-
 --addSprite(index, x, y, "src", width, height);
 --addStringSprite(index, x, y, size, "string", color);
 --addPolySprite(index, color, x1, y1, x2, y2, x2, y2);
 --linearInterpolate(index, destinationX, destinationY, speed);
---getProp
+--callState(state);
 
 addSprite("bg", 0, 0, "main_menu_bg.png", 0, 0);
 addSprite("centa", 600, 400, "centa_full.png", 0, 0);
@@ -25,7 +23,8 @@ function event(target, type)
 			stage = stage + 1;
 		end
 	elseif stage == 1 then
-		print("next state call...");
+		print("setting state: match_setup");
+		callState("match_setup");
 		stage = stage + 1;
 	end
 end

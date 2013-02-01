@@ -45,8 +45,10 @@ void StateHandler::setState(int index){
 void StateHandler::setState(std::string index){
 	for(int i = 0; i < states.size(); i++){
 		if(states.at(i)->getIndex() == index){
-			//delete currentState;
-
+			//currentState->closeState();
+			delete currentState;
+			currentState = states.at(i);
+			currentState->callState();
 		}
 	}
 }
@@ -64,6 +66,7 @@ void StateHandler::setupGui(void){
 	states.push_back(matchSetup);
 
 	currentState = titleScreen;
+	titleScreen->callState();
 }
 
 void StateHandler::loading(sf::RenderWindow *window, std::string message){
