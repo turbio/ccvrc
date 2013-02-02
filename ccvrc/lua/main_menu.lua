@@ -19,7 +19,7 @@ end
 function event(target, type)
 	if stage == 0 then
 		if target == "mousedown" or target == "keydown" then
-			linearInterpolate("cts", getProp("cts", "x"), 600, 10.0);
+			linearInterpolate("cts", getProp("cts", "x"), 600, 40.0);
 			stage = stage + 1;
 		end
 	elseif stage == 1 then

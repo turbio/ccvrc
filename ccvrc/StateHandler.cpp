@@ -45,8 +45,6 @@ void StateHandler::setState(int index){
 void StateHandler::setState(std::string index){
 	for(int i = 0; i < states.size(); i++){
 		if(states.at(i)->getIndex() == index){
-			//currentState->closeState();
-			delete currentState;
 			currentState = states.at(i);
 			currentState->callState();
 		}
@@ -96,7 +94,7 @@ void StateHandler::loaded(){
 	
 }
 
-//get functions for states:
+//get functions for states
 sf::Texture* StateHandler::getTexture(std::string src){
 	return logicHandler->getTexture(src);
 }

@@ -11,6 +11,11 @@ tmp_cen.png
 tmp_rus.png
 centa_full.png
 russ_final.png
+centa_icon.png
+russ_icon.png
+btn_select_act.png
+btn_select_inact.png
+btn_select_invalid.png
 
 #music
 title.ogg

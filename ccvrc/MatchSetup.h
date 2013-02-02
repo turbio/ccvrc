@@ -7,6 +7,5 @@ public:
 	MatchSetup(StateHandler*);
 	~MatchSetup(void);
 	void update(double delta_time);
-	void callState(void);
 };
 

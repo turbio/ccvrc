@@ -30,6 +30,7 @@ LuaInterface::LuaInterface(const char * path, GameState * _interface){
 
 LuaInterface::~LuaInterface(void){
 	lua_close(luaState);
+	delete luaState;
 }
 
 void LuaInterface::luaInit(void){
@@ -62,15 +63,12 @@ void LuaInterface::luaError(const char * type){
 int luaAddPolySprite(lua_State* l){
 	//takes arguments int index, int x, int y, int width, int height, and optionaly int color
 
-	int color = 0xff00ff;
+	int color = 0xff0000;
 	int argCount = lua_gettop(l);
 	std::string index = "null";
 
-	index = lua_tonumber(l, 1);	//get index (1st param)
+	index = lua_tostring(l, 1);	//get index (1st param)
 	color = lua_tonumber(l, 2);
-
-	//std::printf("\ninfo: %d %d %d %d %d %d\n", index, xpos, ypos,
-	//	width, height, color);
 
 	int * vertexData = new int[argCount - 2];
 

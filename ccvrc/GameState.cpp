@@ -46,10 +46,8 @@ void GameState::resetState(void){
 		delete sprites.at(i);
 	}
 	sprites.clear();
-	delete luaInterface;
-	luaInterface = new LuaInterface(luaPath.c_str(), this);
 
-	luaInterface->luaInit();
+	callState();
 }
 
 std::string GameState::getProp(std::string target, std::string type){
