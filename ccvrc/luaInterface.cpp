@@ -64,19 +64,23 @@ int luaAddPolySprite(lua_State* l){
 	//takes arguments int index, int x, int y, int width, int height, and optionaly int color
 
 	int color = 0xff0000;
+	int xpos = 0, ypos = 0;
 	int argCount = lua_gettop(l);
 	std::string index = "null";
 
 	index = lua_tostring(l, 1);	//get index (1st param)
-	color = lua_tonumber(l, 2);
+	xpos = lua_tonumber(l, 2);
+	ypos = lua_tonumber(l, 3);
+	color = lua_tonumber(l, 4);
 
-	int * vertexData = new int[argCount - 2];
+	int * vertexData = new int[argCount - 4];
 
-	for(int i = 0; i < argCount - 2; i++){
-		vertexData[i] = lua_tonumber(l, i + 3);
+	for(int i = 0; i < argCount - 4; i++){
+		vertexData[i] = 0;
+		vertexData[i] = lua_tonumber(l, i + 5);
 	}
 
-	luaInterface->addPolySprite(index, color, argCount - 2, vertexData);
+	luaInterface->addPolySprite(index, xpos, ypos, color, argCount - 2, vertexData);
 
 	return 0;
 }

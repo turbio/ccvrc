@@ -22,7 +22,7 @@ public:
 		return &sprites;
 	};
 
-	void addPolySprite(std::string index, int color, int length, int * vertDat);
+	void addPolySprite(std::string index, int x, int y, int color, int length, int * vertDat);
 	void addStringSprite(std::string index, int x, int y, int size, std::string text, int color);
 	void addSprite(Sprite*);
 	void addSprite(std::string, int x, int y, std::string tex, int w, int h);
