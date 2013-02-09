@@ -116,8 +116,7 @@ void GameState::addPolySprite(std::string index, int x, int y, int color, int le
 	sf::ConvexShape * poly = new sf::ConvexShape();
 
 	poly->setPointCount(length / 2);
-
-	for(int i = 0; i < length; i += 2){
+	for(int i = 0; i < length - 2; i += 2){
 		poly->setPoint(((i + 2) / 2) - 1, sf::Vector2f(vertexData[i], vertexData[1 + i]));
 	}
 
@@ -125,7 +124,7 @@ void GameState::addPolySprite(std::string index, int x, int y, int color, int le
 	int g = (color / 256) % 256;
 	int b = color % 256;
 	poly->setFillColor(sf::Color(r, g, b));
-	poly->setPosition(100, 100);
+	poly->setPosition(x, y);
 
 	Sprite * spr = new Sprite(index, poly);
 

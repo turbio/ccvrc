@@ -15,7 +15,7 @@ addSprite("left_pane", 1, 50, "match_setup_panel.png", -400, 0);
 addSprite("right_pane", 799, 50, "match_setup_panel.png",  0, 0);
 
 --right panel
---addPolySprite("centa_bg", 0, 0, 0x14b4ff, right_pane_destination + 5, 140, 800, 140, 800, 256, right_pane_destination + 5, 256);
+--addPolySprite("centa_bg", 455, 140, 0x14b4ff, 0, 0, 345, 0, 345, 10, 0, 10);
 addSprite("centa_icon", right_pane_start + 30, 150, "centa_icon.png",  96, 96);
 addStringSprite("centa_icon_text", right_pane_start + 136, 150, 30, "Centa Chicken", 0x000000);
 addStringSprite("centa_icon_desc", right_pane_start + 136, 185, 20, "Centa chicken is the best\nchicken, in ever.", 0x000000);
@@ -24,9 +24,9 @@ addSprite("russ_icon", right_pane_start + 30, 271, "russ_icon.png",  96, 96);
 addStringSprite("russ_icon_text", right_pane_start + 136, 271, 30, "Russian Chicken", 0x000000);
 addStringSprite("russ_icon_desc", right_pane_start + 136, 306, 20, "russian chicken, not so\ngood.", 0x000000);
 
-addPolySprite("ready_bg", 100, 100, 0x14b4ff, 0, 0, 10, 0, 10, 10, 0, 10);    -------------------------------------
-addSprite("ready_btn", right_pane_start + 30, 552, "btn_select_inact.png",  0, 0);
-addStringSprite("ready_btn_text", right_pane_start + 77, 552, 25, "Ready", 0x000000);
+addPolySprite("ready_bg", right_pane_start + 5, 540, 0x14b4ff, 0, 0, 345, 0, 345, 60, 0, 60);
+addSprite("ready_btn", right_pane_start + 30, 555, "btn_select_inact.png",  0, 0);
+addStringSprite("ready_btn_text", right_pane_start + 77, 555, 25, "Ready", 0x000000);
 
 
 --lables
@@ -43,9 +43,9 @@ function init()
 	linearInterpolate("russ_icon_text", right_pane_destination + 136, 271, 65.0);
 	linearInterpolate("russ_icon_desc", right_pane_destination + 136, 306, 65.0);
 
-	--linearInterpolate("ready_bg", right_pane_destination + 30, 271, 65.0);    ----------------------------------
-	linearInterpolate("ready_btn", right_pane_destination + 30, 552, 65.0);
-	linearInterpolate("ready_btn_text", right_pane_destination + 77, 552, 65.0);
+	linearInterpolate("ready_bg", right_pane_destination + 5, 540, 65.0);
+	linearInterpolate("ready_btn", right_pane_destination + 30, 555, 65.0);
+	linearInterpolate("ready_btn_text", right_pane_destination + 77, 555, 65.0);
 
 	linearInterpolate("right_pane_title", right_pane_destination + 275, y_offset, 65.0);
 	linearInterpolate("left_pane_title", left_pane_destination - 345, y_offset, 65.0);
