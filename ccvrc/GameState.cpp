@@ -120,19 +120,9 @@ void GameState::addSprite(std::string index, int xpos, int ypos, std::string src
 	sf::Sprite * sprite = new sf::Sprite();
 
 	sprite->setTexture(*stateHandler->getTexture(src));
-	
-	if(width != 0 && height == 0){
-		sprite->scale((float)width / sprite->getTexture()->getSize().x, 1);
-	}else if(height != 0 && width == 0){
-		sprite->scale(1, (float)height /  sprite->getTexture()->getSize().y);
-	}else if(width == 0 && height == 0){
-		sprite->scale(1, 1);
-	}else{
-		sprite->scale((float)width / sprite->getTexture()->getSize().x, (float)height /  sprite->getTexture()->getSize().y);
-	}
 	sprite->setPosition(xpos, ypos);
 
-	Sprite * spr = new Sprite(index, sprite);
+	Sprite * spr = new Sprite(index, sprite, width, height);
 
 	addSprite(spr);
 }

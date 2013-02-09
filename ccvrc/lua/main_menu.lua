@@ -17,15 +17,17 @@ function init()
 end
 
 function event(target, type)
-	if stage == 0 then
-		if target == "mousedown" or target == "keydown" then
-			linearInterpolate("cts", getProp("cts", "x"), 600, 40.0);
+	if target == "mousedown" or target == "keydown" then
+		if stage == 0 then
+			if target == "mousedown" or target == "keydown" then
+				linearInterpolate("cts", getProp("cts", "x"), 600, 40.0);
+				stage = stage + 1;
+			end
+		elseif stage == 1 then
+			print("setting state: match_setup");
+			callState("match_setup");
 			stage = stage + 1;
 		end
-	elseif stage == 1 then
-		print("setting state: match_setup");
-		callState("match_setup");
-		stage = stage + 1;
 	end
 end
 

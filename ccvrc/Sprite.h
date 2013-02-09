@@ -6,7 +6,7 @@
 
 class Sprite{
 public:
-	Sprite(std::string index, sf::Sprite*);
+	Sprite(std::string index, sf::Sprite*, int, int);
 	Sprite(std::string index, sf::Text*);
 	Sprite(std::string index, sf::ConvexShape*);
 	~Sprite(void);
@@ -41,7 +41,7 @@ private:
 	sf::ConvexShape * poly;
 	bool isSprite, isText, isPoly;
 	std::string index;
-	float xpos, ypos;
+	float xpos, ypos, scaleX, scaleY;
 
 	//used for interpolation
 	bool interpolate;

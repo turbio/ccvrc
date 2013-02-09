@@ -1,9 +1,11 @@
 #include "Sprite.h"
 
-Sprite::Sprite(std::string _index, sf::Sprite * _sprite){
+Sprite::Sprite(std::string _index, sf::Sprite * _sprite, int xs, int ys){
 	index = _index;
 	interpolate = false;
 	hasArrived = false;
+	scaleX = xs;
+	scaleY = ys;
 
 	sprite = _sprite;
 	isSprite = true;
@@ -12,6 +14,16 @@ Sprite::Sprite(std::string _index, sf::Sprite * _sprite){
 
 	xpos = _sprite->getPosition().x;
 	ypos = _sprite->getPosition().y;
+
+	if(xs != 0 && ys == 0){
+		sprite->scale((float)xs / sprite->getTexture()->getSize().x, 1);
+	}else if(xs == 0 && ys != 0){
+		sprite->scale(1, (float)ys / sprite->getTexture()->getSize().y);
+	}else if(xs == 0 && ys == 0){
+
+	}else{
+		sprite->scale((float)xs / sprite->getTexture()->getSize().x, (float)ys /  sprite->getTexture()->getSize().y);
+	}
 }
 
 Sprite::Sprite(std::string _index, sf::Text * _sprite){
@@ -52,8 +64,8 @@ bool Sprite::isCollision(int x, int y){
 	}if(isText){
 		return false;
 	}else if(isSprite){
-		std::printf("scale: %d, %d\n", sprite->getScale().x, sprite->getScale().y);
-		return sprite->getLocalBounds().contains((x - xpos), y - ypos);
+		return sprite->getLocalBounds().contains((x - xpos) * ((float)scaleX / sprite->getTexture()->getSize().x),
+			(y - ypos) * ((float)scaleY / sprite->getTexture()->getSize().y));
 	}
 
 	return false;
