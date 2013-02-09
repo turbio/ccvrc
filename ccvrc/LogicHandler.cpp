@@ -9,10 +9,10 @@ LogicHandler::LogicHandler(void){
 
 	width = 800;
 	height = 600;
-	stateHandler = new StateHandler(&width, &height, this);
 
 	window = new sf::RenderWindow(sf::VideoMode(width, height), TITLE);
 
+	stateHandler = new StateHandler(&width, &height, this, window);
 	stateHandler->loading(window);
 	loadRes("res/");
 	stateHandler->loaded();

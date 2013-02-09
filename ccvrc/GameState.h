@@ -12,7 +12,7 @@ class StateHandler;
 class GameState{
 
 public:
-	GameState(std::string stateName, std::string lua_path, StateHandler* game_state_handler_reference);
+	GameState(std::string stateName, std::string lua_path, StateHandler* game_state_handler_reference, sf::RenderWindow * window);
 	~GameState(void);
 	virtual void update(double delta_time);
 	virtual void callState(void);
@@ -29,6 +29,7 @@ public:
 	void interpolateSprite(std::string target = "null", int destinationX = 0, int destinationY = 0, float speed = 1);
 	void setState(std::string);
 	std::string getProp(std::string target, std::string type);
+	void setProp(std::string target, std::string type);
 	Sprite* findSprite(std::string);
 
 	void keyDown(int key);
@@ -47,4 +48,6 @@ protected:
 private:
 	std::string luaPath;
 	std::string stateName;
+
+	sf::RenderWindow * window;
 };

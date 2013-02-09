@@ -14,7 +14,7 @@ class LogicHandler;
 
 class StateHandler{
 public:
-	StateHandler(int* width_of_window, int* height_of_window, LogicHandler* handler);
+	StateHandler(int* width_of_window, int* height_of_window, LogicHandler* handler, sf::RenderWindow *);
 	~StateHandler(void);
 	void setupGui(void);
 	void loading(sf::RenderWindow *window, std::string text = "Loading...");
@@ -52,5 +52,6 @@ private:
 	int width, height;
 
 	sf::Font * loadfont;
+	sf::RenderWindow * window;
 };
 

@@ -4,7 +4,7 @@
 class MatchSetup : public GameState{
 
 public:
-	MatchSetup(StateHandler*);
+	MatchSetup(StateHandler*, sf::RenderWindow *);
 	~MatchSetup(void);
 	void update(double delta_time);
 };

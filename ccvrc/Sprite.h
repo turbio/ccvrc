@@ -12,6 +12,7 @@ public:
 	~Sprite(void);
 	void setInterpolate(int destX, int destY, float speed);
 	virtual void update(double delta);
+	bool isCollision(int x, int y);
 	std::string getIndex(void){
 		return index;
 	}

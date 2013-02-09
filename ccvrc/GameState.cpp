@@ -1,10 +1,12 @@
 #include "GameState.h"
 #include "StateHandler.h"
 
-GameState::GameState(std::string name, std::string _path, StateHandler* _stateHandler){
+GameState::GameState(std::string name, std::string _path, StateHandler* _stateHandler, sf::RenderWindow * w){
 	stateHandler = _stateHandler;
 	stateName = name;
 	luaPath = _path;
+
+	window = w;
 
 	width = 800;
 	height = 600;
@@ -19,6 +21,14 @@ void GameState::keyDown(int key){
 }
 void GameState::mouseDown(int btn){
 	luaInterface->luaEvent("mousedown", std::to_string(btn));
+
+	sf::Vector2i mousePos = sf::Mouse::getPosition(*window);
+	for(int i = 0; i < sprites.size(); i++){
+		if(sprites.at(i)->isCollision(mousePos.x, mousePos.y)){
+			std::printf("clicked\n");
+			luaInterface->luaEvent(sprites.at(i)->getIndex(), "clicked");
+		}
+	}
 }
 
 void GameState::update(double delta){
@@ -51,11 +61,17 @@ void GameState::resetState(void){
 }
 
 std::string GameState::getProp(std::string target, std::string type){
-	if(target == "stage" || target == "" || target == "window" || target == "screen"){
+	if(target == "stage" || target == "" || target == "window" || target == "screen" || target == "null"){
 		if(type == "width"){
 			return std::to_string((long long)width);    //TODO FIX THIS NOAW;
 		}else if(type == "height"){
 			return std::to_string((long long)height);    //TODO FIIIXIXIX THISS TOOOO SFSA+ FSEGE
+		}if(type == "mousex" || type == "mouseX"){
+			sf::Vector2i localPosition = sf::Mouse::getPosition(*window);
+			return std::to_string(localPosition.x);
+		}if(type == "mousey" || type == "mouseY"){
+			sf::Vector2i localPosition = sf::Mouse::getPosition(*window);
+			return std::to_string(localPosition.y);
 		}
 	}else{
 		if(type == "width"){
@@ -71,6 +87,18 @@ std::string GameState::getProp(std::string target, std::string type){
 	}
 
 	return "err";
+}
+
+void GameState::setProp(std::string target, std::string type){
+	if(target == "stage" || target == "" || target == "window" || target == "screen" || target == "null"){
+
+	}else{
+		if(type == "xpos" || type == "x"){
+			findSprite(target)->getX();
+		}if(type == "ypos" || type == "y"){
+			findSprite(target)->getY();
+		}
+	}
 }
 
 void GameState::addSprite(Sprite* sprite){

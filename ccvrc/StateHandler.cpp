@@ -1,10 +1,11 @@
 #include "StateHandler.h"
 #include "LogicHandler.h"
 
-StateHandler::StateHandler(int * w, int * h, LogicHandler * _handler){
+StateHandler::StateHandler(int * w, int * h, LogicHandler * _handler, sf::RenderWindow * win){
 	width = *w;
 	height = *h;
 
+	window = win;
 	logicHandler = _handler;
 
 	loadfont = new sf::Font();
@@ -33,8 +34,6 @@ void StateHandler::keyPressed(int key){
 
 void StateHandler::mousePressed(int btn){
 	currentState->mouseDown(btn);
-
-	//TODO check for mouse touching sprite and send event to lua / gamestate
 }
 
 void StateHandler::setState(int index){
@@ -57,10 +56,10 @@ GameState* StateHandler::getCurrentState(){
 
 void StateHandler::setupGui(void){
 
-	GameState * titleScreen = new GuiTitleScreen(this);
+	GameState * titleScreen = new GuiTitleScreen(this, window);
 	states.push_back(titleScreen);
 
-	GameState * matchSetup = new MatchSetup(this);
+	GameState * matchSetup = new MatchSetup(this, window);
 	states.push_back(matchSetup);
 
 	currentState = titleScreen;

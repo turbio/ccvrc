@@ -2,7 +2,7 @@
 --addStringSprite(index, x, y, size, "string", color);
 --addPolySprite(index, color, x1, y1, x2, y2, x2, y2);
 --linearInterpolate(index, destinationX, destinationY, speed);
---getProp
+--setProp(target, type);
 
 right_pane_start = 799;
 left_pane_start = 1;
@@ -10,12 +10,15 @@ right_pane_destination = 450;
 left_pane_destination = 350;
 y_offset = 50;
 
+--background
 addSprite("bg", 0, 0, "main_menu_bg.png", 0, 0);
 addSprite("left_pane", 1, 50, "match_setup_panel.png", -400, 0);
 addSprite("right_pane", 799, 50, "match_setup_panel.png",  0, 0);
 
+--selector
+addPolySprite("selector_bg", 455, 140, 0x14b4ff, 0, 0, 345, 0, 345, 96 + 20, 0, 96 + 20);
+
 --right panel
---addPolySprite("centa_bg", 455, 140, 0x14b4ff, 0, 0, 345, 0, 345, 10, 0, 10);
 addSprite("centa_icon", right_pane_start + 30, 150, "centa_icon.png",  96, 96);
 addStringSprite("centa_icon_text", right_pane_start + 136, 150, 30, "Centa Chicken", 0x000000);
 addStringSprite("centa_icon_desc", right_pane_start + 136, 185, 20, "Centa chicken is the best\nchicken, in ever.", 0x000000);
@@ -34,7 +37,6 @@ addStringSprite("right_pane_title", right_pane_start + 275, y_offset, 45, "You",
 addStringSprite("left_pane_title", left_pane_start - 345, 50, 45, "Enemy", 0xdddddd);
 
 function init()
-	stage = 0;
 	linearInterpolate("centa_icon", right_pane_destination + 30, 150, 65.0);
 	linearInterpolate("centa_icon_text", right_pane_destination + 136, 150, 65.0);
 	linearInterpolate("centa_icon_desc", right_pane_destination + 136, 185, 65.0);
@@ -51,11 +53,16 @@ function init()
 	linearInterpolate("left_pane_title", left_pane_destination - 345, y_offset, 65.0);
 	linearInterpolate("right_pane", right_pane_destination, y_offset, 65.0);
 	linearInterpolate("left_pane", left_pane_destination, y_offset, 65.0);
-
 end
 
 function event(target, type)
-	
+	if target == "mousedown" then
+		
+	end
+
+	if type == "clicked" then
+		linearInterpolate(target, -100, -100, 10.0);
+	end
 end
 
 function error(type)

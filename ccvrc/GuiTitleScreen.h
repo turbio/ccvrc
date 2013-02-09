@@ -5,7 +5,7 @@
 class GuiTitleScreen : public GameState{
 
 public:
-	GuiTitleScreen(StateHandler*);
+	GuiTitleScreen(StateHandler *, sf::RenderWindow *);
 	~GuiTitleScreen(void);
 	void update(double delta_time);
 

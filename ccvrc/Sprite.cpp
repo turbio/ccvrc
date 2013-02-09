@@ -46,6 +46,19 @@ Sprite::~Sprite(void){
 	//delete drawable;
 }
 
+bool Sprite::isCollision(int x, int y){
+	if(isPoly){
+		return poly->getTextureRect().contains(x - xpos, y - ypos);
+	}if(isText){
+		return false;
+	}else if(isSprite){
+		std::printf("scale: %d, %d\n", sprite->getScale().x, sprite->getScale().y);
+		return sprite->getLocalBounds().contains((x - xpos), y - ypos);
+	}
+
+	return false;
+}
+
 void Sprite::setInterpolate(int _destX, int _destY, float _speed){
 	hasArrived = false;
 	destX = _destX;
