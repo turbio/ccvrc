@@ -10,13 +10,18 @@ right_pane_destination = 450;
 left_pane_destination = 350;
 y_offset = 50;
 
+this_plr = 0;
+nme_ai_plr = 0;
+
 --background
 addSprite("bg", 0, 0, "main_menu_bg.png", 0, 0);
 addSprite("left_pane", 1, 50, "match_setup_panel.png", -400, 0);
 addSprite("right_pane", 799, 50, "match_setup_panel.png",  0, 0);
 
 --selector
-addPolySprite("selector_bg", 455, 140, 0x14b4ff, 0, 0, 345, 0, 345, 96 + 20, 0, 96 + 20);
+addPolySprite("nme_selector_bg", left_pane_start + 5 - 6, 140 + 128, 0x14b4ff, 0, 0, 345, 0, 345, 96 + 20, 0, 96 + 20);
+addPolySprite("selector_bg", right_pane_start + 5, 140, 0x14b4ff, 0, 0, 345, 0, 345, 96 + 20, 0, 96 + 20);
+addPolySprite("nme_type_selector", 8, 134 - 16, 0x14b4ff, 0, 0, 96, 0, 96, 96, 0, 96);
 
 --right panel
 addSprite("centa_icon", right_pane_start + 30, 150, "centa_icon.png",  96, 96);
@@ -31,12 +36,31 @@ addPolySprite("ready_bg", right_pane_start + 5, 540, 0x14b4ff, 0, 0, 345, 0, 345
 addSprite("ready_btn", right_pane_start + 30, 555, "btn_select_inact.png",  0, 0);
 addStringSprite("ready_btn_text", right_pane_start + 77, 555, 25, "Ready", 0x000000);
 
+--left panel
+addSprite("ai_icon", 32, 134, "ai.png", 0, 0);
+addSprite("net_icon", 150, 134, "net.png", 0, 0);
+addSprite("local_icon", 264, 134, "local.png", 0, 0);
+
+addStringSprite("ai_icon_text", 45, 180, 22, "Ai", 0x000000);
+addStringSprite("net_icon_text", 45 + 92, 180, 22, "Network", 0x000000);
+addStringSprite("local_icon_text", 45 + 220, 180, 22, "Local", 0x000000);
+
+
+addSprite("nme_centa_icon", left_pane_start - 10 + 30, 128+ 150, "centa_icon.png",  96, 96);
+addStringSprite("nme_centa_icon_text", left_pane_start - 10 + 136,128 +  150, 30, "Centa Chicken", 0x000000);
+addStringSprite("nme_centa_icon_desc", left_pane_start - 10 + 136,128 +  185, 20, "Centa chicken is the best\nchicken, in ever.", 0x000000);
+
+addSprite("nme_russ_icon", left_pane_start - 10 + 30, 128+ 271, "russ_icon.png",  96, 96);
+addStringSprite("nme_russ_icon_text", left_pane_start - 10 + 136,128 +  271, 30, "Russian Chicken", 0x000000);
+addStringSprite("nme_russ_icon_desc", left_pane_start - 10 + 136,128 +  306, 20, "russian chicken, not so\ngood.", 0x000000);
 
 --lables
 addStringSprite("right_pane_title", right_pane_start + 275, y_offset, 45, "You", 0xdddddd);
 addStringSprite("left_pane_title", left_pane_start - 345, 50, 45, "Enemy", 0xdddddd);
 
 function init()
+	linearInterpolate("selector_bg", right_pane_destination + 5, 140, 65.0);
+
 	linearInterpolate("centa_icon", right_pane_destination + 30, 150, 65.0);
 	linearInterpolate("centa_icon_text", right_pane_destination + 136, 150, 65.0);
 	linearInterpolate("centa_icon_desc", right_pane_destination + 136, 185, 65.0);
@@ -61,7 +85,22 @@ function event(target, type)
 	end
 
 	if type == "clicked" then
-		linearInterpolate(target, -100, -100, 10.0);
+		if target == "centa_icon" then
+			this_plr = 0;
+			linearInterpolate("selector_bg", 455, 140, 100);
+		end
+		if target == "russ_icon" then
+			this_plr = 1;
+			linearInterpolate("selector_bg", 455, 260, 100);
+		end
+		if target == "nme_centa_icon" then
+			nme_ai_plr = 0;
+			linearInterpolate("nme_selector_bg", left_pane_start + 5 - 6, 140 + 128, 100);
+		end
+		if target == "nme_russ_icon" then
+			nme_ai_plr = 1;
+			linearInterpolate("nme_selector_bg", left_pane_start + 5 - 6, 140 + 128 + 121, 100);
+		end
 	end
 end
 

@@ -16,6 +16,9 @@ russ_icon.png
 btn_select_act.png
 btn_select_inact.png
 btn_select_invalid.png
+local.png
+net.png
+ai.png
 
 #music
 title.ogg
