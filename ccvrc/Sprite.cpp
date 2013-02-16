@@ -4,8 +4,8 @@ Sprite::Sprite(std::string _index, sf::Sprite * _sprite, int xs, int ys){
 	index = _index;
 	interpolate = false;
 	hasArrived = false;
-	scaleX = xs;
-	scaleY = ys;
+	scaleX = _sprite->getTexture()->getSize().x;
+	scaleY = _sprite->getTexture()->getSize().y;
 
 	sprite = _sprite;
 	isSprite = true;
@@ -17,11 +17,16 @@ Sprite::Sprite(std::string _index, sf::Sprite * _sprite, int xs, int ys){
 
 	if(xs != 0 && ys == 0){
 		sprite->scale((float)xs / sprite->getTexture()->getSize().x, 1);
+		scaleY = ys;
 	}else if(xs == 0 && ys != 0){
 		sprite->scale(1, (float)ys / sprite->getTexture()->getSize().y);
+		scaleX = xs;
 	}else if(xs == 0 && ys == 0){
-
+		sprite->scale(1, 1);
 	}else{
+		scaleX = xs;
+		scaleY = ys;
+
 		sprite->scale((float)xs / sprite->getTexture()->getSize().x, (float)ys /  sprite->getTexture()->getSize().y);
 	}
 }
@@ -60,7 +65,7 @@ Sprite::~Sprite(void){
 
 bool Sprite::isCollision(int x, int y){
 	if(isPoly){
-		return poly->getTextureRect().contains(x - xpos, y - ypos);
+		//return poly->getTextureRect().contains(x - xpos, y - ypos);
 	}if(isText){
 		return false;
 	}else if(isSprite){

@@ -25,7 +25,6 @@ void GameState::mouseDown(int btn){
 	sf::Vector2i mousePos = sf::Mouse::getPosition(*window);
 	for(int i = 0; i < sprites.size(); i++){
 		if(sprites.at(i)->isCollision(mousePos.x, mousePos.y)){
-			std::printf("clicked\n");
 			luaInterface->luaEvent(sprites.at(i)->getIndex(), "clicked");
 		}
 	}

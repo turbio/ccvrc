@@ -19,6 +19,7 @@ btn_select_invalid.png
 local.png
 net.png
 ai.png
+vs.png
 
 #music
 title.ogg
