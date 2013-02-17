@@ -17,5 +17,5 @@ GuiTitleScreen::~GuiTitleScreen(void){
 }
 
 void GuiTitleScreen::update(double delta){
-
+	GameState::update(delta);
 }

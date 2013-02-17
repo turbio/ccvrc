@@ -23,6 +23,9 @@ vs.png
 bottom_bar_bg.png
 bar.png
 top_bar_bg.png
+centa_minion.png
+centa_minion_add.png
+centa_minion_add_over.png
 
 #music
 title.ogg

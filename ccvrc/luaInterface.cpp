@@ -69,15 +69,15 @@ int luaAddPolySprite(lua_State* l){
 	std::string index = "null";
 
 	index = lua_tostring(l, 1);	//get index (1st param)
-	xpos = lua_tonumber(l, 2);
-	ypos = lua_tonumber(l, 3);
-	color = lua_tonumber(l, 4);
+	xpos = (int)lua_tonumber(l, 2);
+	ypos = (int)lua_tonumber(l, 3);
+	color = (int)lua_tonumber(l, 4);
 
 	int * vertexData = new int[argCount - 4];
 
 	for(int i = 0; i < argCount - 4; i++){
 		vertexData[i] = 0;
-		vertexData[i] = lua_tonumber(l, i + 5);
+		vertexData[i] = (int)lua_tonumber(l, i + 5);
 	}
 
 	luaInterface->addPolySprite(index, xpos, ypos, color, argCount - 2, vertexData);
@@ -101,12 +101,12 @@ int luaAddStringSprite(lua_State* l){
 	}
 
 	index = lua_tostring(l, 1);
-	xpos = lua_tonumber(l, 2);
-	ypos = lua_tonumber(l, 3);
-	size = lua_tonumber(l, 4);
+	xpos = (int)lua_tonumber(l, 2);
+	ypos = (int)lua_tonumber(l, 3);
+	size = (int)lua_tonumber(l, 4);
 	text = lua_tostring(l, 5);
 	if(paramCount > 5){
-		color = lua_tonumber(l, 6);
+		color = (int)lua_tonumber(l, 6);
 	}
 
 	luaInterface->addStringSprite(index, xpos, ypos, size, text, color);
@@ -135,19 +135,19 @@ int luaAddSprite(lua_State* l){
 
 	switch (lua_gettop(l)){
 	case 6:{
-		height = lua_tonumber(l, 6);
+		height = (int)lua_tonumber(l, 6);
 			}
 	case 5:{
-		width = lua_tonumber(l, 5);
+		width = (int)lua_tonumber(l, 5);
 			}
 	case 4:{
 		texture = lua_tostring(l, 4);
 			}
 	case 3:{
-		yPos = lua_tonumber(l, 3);
+		yPos = (int)lua_tonumber(l, 3);
 		   }
 	case 2:{
-		xPos = lua_tonumber(l, 2);
+		xPos = (int)lua_tonumber(l, 2);
 		   }
 	case 1:{
 		index = lua_tostring(l, 1);
@@ -165,13 +165,13 @@ int luaLinearInterpolate(lua_State* l){
 
 	switch (lua_gettop(l)){
 	case 4:{
-		speed = lua_tonumber(l, 4);
+		speed = (float)lua_tonumber(l, 4);
 		   }
 	case 3:{
-		destY = lua_tonumber(l, 3);
+		destY = (int)lua_tonumber(l, 3);
 		   }
 	case 2:{
-		destX = lua_tonumber(l, 2);
+		destX = (int)lua_tonumber(l, 2);
 		   }
 	case 1:{
 		target = lua_tostring(l, 1);
@@ -189,8 +189,8 @@ int luaCallState(lua_State* l){
 
 	std::vector<int> args;
 
-	for(int i = 2; i < lua_gettop(l); i++){
-		std::printf("yolo: %d\n", i);
+	for(int i = 1; i < lua_gettop(l); i++){
+		args.push_back(lua_tonumber(l, i + 1));
 	}
 
 	luaInterface->setState(state, args);
