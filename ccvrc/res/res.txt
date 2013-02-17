@@ -20,6 +20,9 @@ local.png
 net.png
 ai.png
 vs.png
+bottom_bar_bg.png
+bar.png
+top_bar_bg.png
 
 #music
 title.ogg

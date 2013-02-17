@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <SFML\Graphics.hpp>
+#include <stdarg.h>
 #include "GuiObject.h"
 #include "LuaInterface.h"
 #include "Sprite.h"
@@ -15,7 +16,7 @@ public:
 	GameState(std::string stateName, std::string lua_path, StateHandler* game_state_handler_reference, sf::RenderWindow * window);
 	~GameState(void);
 	virtual void update(double delta_time);
-	virtual void callState(void);
+	virtual void callState(std::vector<class T> args);
 	virtual void closeState(void);
 	void resetState(void);
 	std::vector<Sprite*>* getSpriteList(void){

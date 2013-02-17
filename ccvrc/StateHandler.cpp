@@ -36,16 +36,12 @@ void StateHandler::mousePressed(int btn){
 	currentState->mouseDown(btn);
 }
 
-void StateHandler::setState(int index){
-	currentState = states.at(index);
-	currentState->callState();
-}
-
-void StateHandler::setState(std::string index){
+void StateHandler::setState(std::string index, std::vector<class T> args){
 	for(int i = 0; i < states.size(); i++){
 		if(states.at(i)->getIndex() == index){
 			currentState = states.at(i);
-			currentState->callState();
+			
+			currentState->callState(args);
 		}
 	}
 }
@@ -61,6 +57,9 @@ void StateHandler::setupGui(void){
 
 	GameState * matchSetup = new MatchSetup(this, window);
 	states.push_back(matchSetup);
+
+	GameState * battleState = new BattleState(this, window);
+	states.push_back(battleState);
 
 	currentState = titleScreen;
 	titleScreen->callState();

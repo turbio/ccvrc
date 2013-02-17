@@ -121,6 +121,7 @@ function event(target, type)
 	if locked == true then --yeah i know
 		if target == "vs" and type == "arrived" then
 			print("calling state: battle with args: this play = "..this_plr..", enemy player = "..nme_plr);
+			callState("battle", this_plr, nme_plr);
 		end
 	end
 end
@@ -130,7 +131,7 @@ function startBattle()
 	locked = true;
 
 	addSprite("vs", 25, -230, "vs.png", 0, 0);
-	linearInterpolate("vs", 25, 100, 100);
+	linearInterpolate("vs", 25, 800, 100);
 end
 
 function error(type)

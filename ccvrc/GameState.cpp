@@ -40,7 +40,7 @@ void GameState::update(double delta){
 	}
 }
 
-void GameState::callState(void){
+void GameState::callState(std::vector<class T> args){
 	luaInterface = new LuaInterface(luaPath.c_str(), this);
 	luaInterface->luaInit();
 }
@@ -56,13 +56,14 @@ void GameState::resetState(void){
 	}
 	sprites.clear();
 
-	callState();
+	std::vector<class T> args;
+	callState(args);
 }
 
 std::string GameState::getProp(std::string target, std::string type){
 	if(target == "stage" || target == "" || target == "window" || target == "screen" || target == "null"){
 		if(type == "width"){
-			return std::to_string((long long)width);    //TODO FIX THIS NOAW;
+			return std::to_string((long long)width);    //TODO FIX THIS NOAW...
 		}else if(type == "height"){
 			return std::to_string((long long)height);    //TODO FIIIXIXIX THISS TOOOO SFSA+ FSEGE
 		}if(type == "mousex" || type == "mouseX"){
