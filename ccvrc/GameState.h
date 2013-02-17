@@ -16,7 +16,7 @@ public:
 	GameState(std::string stateName, std::string lua_path, StateHandler* game_state_handler_reference, sf::RenderWindow * window);
 	~GameState(void);
 	virtual void update(double delta_time);
-	virtual void callState(std::vector<class T> args);
+	virtual void callState(std::vector<int> args);
 	virtual void closeState(void);
 	void resetState(void);
 	std::vector<Sprite*>* getSpriteList(void){
@@ -28,7 +28,7 @@ public:
 	void addSprite(Sprite*);
 	void addSprite(std::string, int x, int y, std::string tex, int w, int h);
 	void interpolateSprite(std::string target = "null", int destinationX = 0, int destinationY = 0, float speed = 1);
-	void setState(std::string);
+	void setState(std::string, std::vector<int> args);
 	std::string getProp(std::string target, std::string type);
 	void setProp(std::string target, std::string type);
 	Sprite* findSprite(std::string);

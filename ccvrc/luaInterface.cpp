@@ -187,7 +187,13 @@ int luaCallState(lua_State* l){
 
 	state = lua_tostring(l, 1);
 
-	luaInterface->setState(state);
+	std::vector<int> args;
+
+	for(int i = 2; i < lua_gettop(l); i++){
+		std::printf("yolo: %d\n", i);
+	}
+
+	luaInterface->setState(state, args);
 
 	return 0;
 }

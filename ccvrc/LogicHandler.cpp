@@ -36,7 +36,7 @@ void LogicHandler::run(void){
 
 	double startTime, endTime;
 	while (window->isOpen()){
-		startTime = clock.getElapsedTime().asMicroseconds();
+		startTime = (double)clock.getElapsedTime().asMicroseconds();
 
 		sf::Event evt;
 		while (window->pollEvent(evt)){
@@ -46,11 +46,11 @@ void LogicHandler::run(void){
 		LogicHandler::update(deltaTime);
 		LogicHandler::render();
 
-		long sleepTime = ((float)1 / (float)60) * 1000;
+		long sleepTime = (long)(((float)1 / (float)60) * 1000);
 
 		sf::sleep(sf::milliseconds(sleepTime));
 
-		endTime = clock.getElapsedTime().asMicroseconds();
+		endTime = (double)clock.getElapsedTime().asMicroseconds();
 
 		deltaTime = endTime - startTime;
     }
@@ -70,7 +70,7 @@ void LogicHandler::render(void){
 	window->clear(sf::Color(20, 180, 255));
 
 	if(stateHandler->getCurrentState() != NULL){
-		for(int list = 0; list < stateHandler->getCurrentState()->getSpriteList()->size(); list++){
+		for(unsigned int list = 0; list < stateHandler->getCurrentState()->getSpriteList()->size(); list++){
 			window->draw(*stateHandler->getCurrentState()->getSpriteList()->at(list)->getDrawable());
 		}
 	}
@@ -100,7 +100,7 @@ bool LogicHandler::loadRes(std::string dir){
 	if(file.is_open()){
 		std::cout <<  ":: line | index | loaded +/- ::::: loading from \"" << dir << "\" ::" << std::endl;
 
-		for(int i = 0; i < 53 + dir.length(); i++){
+		for(unsigned int i = 0; i < 53 + dir.length(); i++){
 			std::cout << ":";
 		}
 		std::cout << std::endl;
@@ -155,7 +155,7 @@ bool LogicHandler::loadRes(std::string dir){
 		}
 		file.close();
 
-		for(int i = 0; i < 53 + dir.length(); i++){
+		for(unsigned int i = 0; i < 53 + dir.length(); i++){
 			std::cout << ":";
 		}
 		std::cout << "\n";

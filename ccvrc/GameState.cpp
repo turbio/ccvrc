@@ -31,7 +31,7 @@ void GameState::mouseDown(int btn){
 }
 
 void GameState::update(double delta){
-	for(int i = 0; i < sprites.size(); i++){
+	for(unsigned int i = 0; i < sprites.size(); i++){
 		sprites.at(i)->update(delta);
 
 		if(sprites.at(i)->checkArrived()){
@@ -40,7 +40,7 @@ void GameState::update(double delta){
 	}
 }
 
-void GameState::callState(std::vector<class T> args){
+void GameState::callState(std::vector<int> args){
 	luaInterface = new LuaInterface(luaPath.c_str(), this);
 	luaInterface->luaInit();
 }
@@ -56,7 +56,7 @@ void GameState::resetState(void){
 	}
 	sprites.clear();
 
-	std::vector<class T> args;
+	std::vector<int> args;
 	callState(args);
 }
 
@@ -167,8 +167,8 @@ void GameState::interpolateSprite(std::string target, int destX, int destY, floa
 	findSprite(target)->setInterpolate(destX, destY, speed);
 }
 
-void GameState::setState(std::string state){
-	stateHandler->setState(state);
+void GameState::setState(std::string state, std::vector<int> args){
+	stateHandler->setState(state, args);
 }
 
 Sprite* GameState::findSprite(std::string target){

@@ -17,15 +17,5 @@ GuiTitleScreen::~GuiTitleScreen(void){
 }
 
 void GuiTitleScreen::update(double delta){
-	GameState::update(delta);
-	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-		//transition = true;
-	}else if(transition){
-		speed += 0.0005f;
-		logo->move(0, speed);
 
-		if(logo->getPosition().y > *stateHandler->getWindowHeight()){
-			stateHandler->setState(1);
-		}
-	}
 }

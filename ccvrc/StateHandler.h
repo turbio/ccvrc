@@ -20,7 +20,7 @@ public:
 	void setupGui(void);
 	void loading(sf::RenderWindow *window, std::string text = "Loading...");
 	void loaded();
-	void setState(std::string index, std::vector<class T> args);
+	void setState(std::string index, std::vector<int> args);
 
 	void keyPressed(int key);
 	void mousePressed(int btn);

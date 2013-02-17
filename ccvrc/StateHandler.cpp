@@ -36,7 +36,7 @@ void StateHandler::mousePressed(int btn){
 	currentState->mouseDown(btn);
 }
 
-void StateHandler::setState(std::string index, std::vector<class T> args){
+void StateHandler::setState(std::string index, std::vector<int> args){
 	for(int i = 0; i < states.size(); i++){
 		if(states.at(i)->getIndex() == index){
 			currentState = states.at(i);
@@ -62,7 +62,9 @@ void StateHandler::setupGui(void){
 	states.push_back(battleState);
 
 	currentState = titleScreen;
-	titleScreen->callState();
+
+	std::vector<int> args;
+	titleScreen->callState(args);
 }
 
 void StateHandler::loading(sf::RenderWindow *window, std::string message){

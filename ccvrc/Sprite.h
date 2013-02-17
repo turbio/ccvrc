@@ -25,6 +25,8 @@ public:
 		}else if(isPoly){
 			return poly;
 		}
+
+		return NULL;
 	}
 
 	float getX(void){

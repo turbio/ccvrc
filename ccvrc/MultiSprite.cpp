@@ -19,13 +19,13 @@ sf::Sprite* MultiSprite::getSprite(int i){
 }
 
 void MultiSprite::move(float x, float y){
-	for(int i = 0; i < sprites.size(); i++){
+	for(unsigned int i = 0; i < sprites.size(); i++){
 		sprites.at(i)->move(x, y);
 	}
 }
 
 void MultiSprite::rotate(float rot){
-	for(int i = 0; i < sprites.size(); i++){
+	for(unsigned int i = 0; i < sprites.size(); i++){
 		sprites.at(i)->rotate(rot);
 	}
 }
