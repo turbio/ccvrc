@@ -21,11 +21,15 @@ net.png
 ai.png
 vs.png
 bottom_bar_bg.png
-bar.png
+bars.png
 top_bar_bg.png
 centa_minion.png
 centa_minion_add.png
 centa_minion_add_over.png
+amo_bar.png
+bar_bg.png
+health_bar.png
+mana_bar.png
 
 #music
 title.ogg
