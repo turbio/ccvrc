@@ -89,7 +89,7 @@ std::string GameState::getProp(std::string target, std::string type){
 	return "err";
 }
 
-void GameState::setProp(std::string target, std::string type){
+void GameState::setProp(std::string target, std::string type, std::string value){
 	if(target == "stage" || target == "" || target == "window" || target == "screen" || target == "null"){
 
 	}else{

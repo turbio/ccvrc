@@ -30,7 +30,7 @@ public:
 	void interpolateSprite(std::string target = "null", int destinationX = 0, int destinationY = 0, float speed = 1);
 	void setState(std::string, std::vector<int> args);
 	std::string getProp(std::string target, std::string type);
-	void setProp(std::string target, std::string type);
+	void setProp(std::string target, std::string type, std::string value);
 	Sprite* findSprite(std::string);
 
 	void keyDown(int key);

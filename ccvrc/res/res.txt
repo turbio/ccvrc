@@ -30,6 +30,9 @@ amo_bar.png
 bar_bg.png
 health_bar.png
 mana_bar.png
+basic_attack.png
+winner.png
+looser.png
 
 #music
 title.ogg
