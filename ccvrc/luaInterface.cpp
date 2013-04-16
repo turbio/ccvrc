@@ -199,5 +199,13 @@ int luaCallState(lua_State* l){
 }
 
 int luaSetProp(lua_State* l){
+	std::string target, type, value;
+
+	target = lua_tostring(l, 1);
+	type = lua_tostring(l, 2);
+	value = lua_tostring(l, 3);
+
+	luaInterface->setProp(target, type, value);
+
 	return 0;
 }

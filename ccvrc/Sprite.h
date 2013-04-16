@@ -13,6 +13,11 @@ public:
 	void setInterpolate(int destX, int destY, float speed);
 	virtual void update(double delta);
 	bool isCollision(int x, int y);
+	void setString(std::string string){
+		if(isText){
+			text->setString(string);
+		}
+	}
 	std::string getIndex(void){
 		return index;
 	}

@@ -95,8 +95,10 @@ void GameState::setProp(std::string target, std::string type, std::string value)
 	}else{
 		if(type == "xpos" || type == "x"){
 			findSprite(target)->getX();
-		}if(type == "ypos" || type == "y"){
+		}else if(type == "ypos" || type == "y"){
 			findSprite(target)->getY();
+		}else if(type == "string"){
+			findSprite(target)->setString(value);
 		}
 	}
 }

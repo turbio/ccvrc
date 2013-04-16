@@ -1,6 +1,8 @@
 current_turn = 0;
 enemy_health = 1000;
 self_health = 1000;
+normal_health = 1000;
+max_health = 1500;
 enemy_alive = true;
 self_alive = true;
 
@@ -24,7 +26,7 @@ addSprite("enemy_health_bar", 110, 7, "health_bar.png", 675, 25);
 addSprite("top_bar_bg", 0, -20, "top_bar_bg.png", 0, 0);
 addStringSprite("enemy_bar_text", 10, -3, 32, "Enemy: ", 0x000000);
 
-addStringSprite("health_count", 400, 10, 16, enemy_health.."/1000", 0xffffff);
+addStringSprite("health_count", 400, 10, 16, enemy_health.."/"..normal_health, 0xffffff);
 
 --actions
 addPolySprite("basic_action_bg", 345, 450, 0x14b4ff, 0, 0, 64 + 10, 0, 64 + 10, 64 + 10, 0, 64 + 10);
@@ -89,6 +91,8 @@ function enemyHealth(amount)
 	end
 
 	linearInterpolate("enemy_health_bar", map(enemy_health, 0, 1000, 110 - 675, 110), 7, 20);
+
+	setProp("health_count", "string", enemy_health.."/"..normal_health);
 end
 
 function selfHealth(amount)
