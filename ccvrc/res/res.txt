@@ -33,6 +33,7 @@ mana_bar.png
 basic_attack.png
 winner.png
 looser.png
+heal.png
 
 #music
 title.ogg
