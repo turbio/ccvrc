@@ -1,4 +1,5 @@
-ui = require 'battle_ui';
+require 'battle_centa';
+require 'battle_ui'
 
 current_turn = false;
 enemy_health = 1000;
@@ -8,15 +9,17 @@ max_health = 1500;
 enemy_alive = true;
 self_alive = true;
 
-local hero;
+addSprite("bg", 0, 0, "main_menu_bg.png", 0, 0);
 
 function init(chosenHero)
 	chosenHero = 0;
 
 	if chosenHero == 0 then
-		hero = require 'battle_centa';
-		addSprite("centa_full_battle", 100, 100, "centa_full.png", 0, 0);
+		centa:new();
 	end
+
+	battleUI:new();
+	centa:addIcons();
 
 	stage = 0;	--the current step that the ui is index
 end
@@ -27,7 +30,17 @@ function event(target, type)
 			enemyHealth(math.random(1, 300));
 		end
 		if target == "basic_action2" then
-			enemyHealth(-math.random(1, 300));
+			enemyHealth(-999);
+		end
+	end
+
+	if enemy_alive == false and type == "arrived" then
+		if stage == 0 then
+			stage = 1;
+			linearInterpolate("player", 500, 125, 30);
+		else
+			stage = 0;
+			linearInterpolate("player", 500, 50, 55);
 		end
 	end
 end
@@ -83,6 +96,8 @@ function enemyDie()
 	linearInterpolate("enemy_health_bar", 110 - 675, 7, 35);
 	addSprite("you_win_splash", (800 / 2) - ((151 * 3.5) / 2) + 35, 0, "winner.png", 151 * 3.5, 184 * 3.5);
 	enemy_alive = false;
+
+	linearInterpolate("player", 500, 50, 20);
 end
 
 function selfDie()

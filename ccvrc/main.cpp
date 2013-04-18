@@ -5,5 +5,7 @@ int main(){
 	LogicHandler logic;	//crate logic handler to handle basicly everything
 	logic.run();	//start da game
 
+	while(true){}
+
     return 0;	//quick kill it before it lays eggs
 }
